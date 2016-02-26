@@ -1,0 +1,35 @@
+@charset "utf-8";
+@import url("reset.css");
+body{font-family: "Microsoft YaHei",tahoma,arial,"Hiragino Sans GB","b8bf53",sans-serif; font-size:14px;}
+.main{width:1200px; margin:30px auto;}
+.nav{width:210px; background:#c81623; position:relative; border:1px solid #c81623; float:left;}
+.nav ul>li>a{display:block; height:31px; line-height:31px; color:#fff; position:relative; padding:0px 10px;}
+.nav ul>li>a span{display:block; width:100%; height:100%;}
+.nav ul>li>a.active{ background:#fff; color:#c81623}
+.nav ul>li>a i{position:absolute; right:10px; top:0px;}
+.nav-box{width:400px; height:400px; background:#000; opacity:0.3; filter:alpha(opacity=30); position:absolute; top:0px; left:210px; display:none; color:#f00; z-index:10;}
+
+.slider{width:730px; height:454px; position:relative; overflow:hidden; float:left; margin-left:10px;}
+.slider .slider-main{}
+.slider .slider-main li{float:left; opacity:0; position:absolute;}
+.slider .slider-main li:nth-of-type(1){opacity:1;}
+.slider .slider-main li a{display:block;}
+.slider-nav{ position:absolute; bottom:10px; width:100%; text-align:center;}
+.slider-nav li{display:inline-block; width:18px; height:18px; line-height:18px; text-align:center; background:#3e3e3e; border-radius:50%; cursor:pointer; color:#fff;}
+.slider-nav li.active{background:#b61b1f;}
+.slider-page a{width:28px; height:62px; background:rgba(0,0,0,0.2); color:#fff; display:block; z-index:1; position:absolute; top:50%; margin-top:-31px; font-size: 22px;
+font-weight:400; font-family: simsun; line-height:62px; text-align:center; text-decoration:none;}
+
+.slider-page a.slider-prev{left:5px; display:none;}
+.slider-page a.slider-next{right:5px; display:none;}
+
+
+/*--查看大图--*/
+.img-list{margin:100px auto; width:800px; position:relative; height:84px;}
+.img-list a{ display:inline-block; width:84px; height:84px; border:1px solid #999; margin-right:10px;}
+.img-list a img{width:100%; height:100%;}
+.mark{width:200px; height:200px;  top:0px; left:0px; position:absolute; display:none; border:1px solid #ccc;}
+.mark img{width:100%; height:100%;}
+
+/*--拖拽--*/
+.drag{width:100px; height:100px; background:#F00; position:absolute; top:0px; left:0px; display:none;}
