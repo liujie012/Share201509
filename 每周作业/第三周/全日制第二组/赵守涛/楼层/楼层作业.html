@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>楼层</title>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        .left {
+            position: fixed;
+            left: 20px;
+            top: 80px;
+        }
+
+        .left ul li {
+            height: 40px;
+            line-height: 40px;
+            color: deeppink;
+            cursor: pointer;
+            width: 50px;
+            text-align: center;
+        }
+
+        .left ul li:hover {
+            background: #3B3B98;
+        }
+
+        .right {
+            margin: auto 90px;
+        }
+
+        .right img {
+            width: 100%;
+        }
+
+        li:hover {
+            background: greenyellow;
+            color: red;
+        }
+
+        .select {
+            color: green;
+        }
+
+        .hover {
+            color: yellow;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="left">
+    <ul id="ul1">
+        <li in="1F">1F</li>
+        <li in="2F">2F</li>
+        <li in="3F">3F</li>
+        <li in="4F">4F</li>
+        <li in="5F">5F</li>
+        <li in="6F">6F</li>
+        <li in="7F">7F</li>
+        <li in="8F">8F</li>
+        <li in="9F">9F</li>
+        <li in="10F">10F</li>
+    </ul>
+</div>
+<div class="right">
+    <img src="img1/1.jpg" alt=""/>
+    <img src="img1/2.jpg" alt=""/>
+    <img src="img1/3.jpg" alt=""/>
+    <img src="img1/4.jpg" alt=""/>
+    <img src="img1/5.jpg" alt=""/>
+    <img src="img1/6.jpg" alt=""/>
+    <img src="img1/7.jpg" alt=""/>
+    <img src="img1/8.jpg" alt=""/>
+    <img src="img1/9.jpg" alt=""/>
+    <img src="img1/10.jpg" alt=""/>
+</div>
+
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    var oUl = document.getElementById("ul1");
+    var oLis = oUl.getElementsByTagName("li");
+    var imgList = document.getElementsByTagName("img");
+    ~function menu() {
+
+        for (var i = 0; i < oLis.length; i++) {
+            (function (i) {
+                var cur = oLis[i];
+                cur.onclick = function () {
+
+                    var targetT = utils.offset(imgList[i]).top;
+                    var curScroll = document.documentElement.scrollTop || document.body.scrollTop;
+                    var step = ((targetT - curScroll) / 500) * 10;
+                    var direction = (targetT - curScroll) > 0 ? 1 : -1;
+                    var timer = window.setInterval(function () {
+                        if ((curScroll - targetT) * direction >= 0) {
+                            document.documentElement.scrollTop = targetT;
+                            document.body.scrollTop = targetT;
+                            clearInterval(timer);
+                            return;
+                        }
+                        curScroll += step;
+                        document.documentElement.scrollTop = curScroll;
+                        document.body.scrollTop = curScroll;
+                    }, 10);
+                    this.innerHTML = this.getAttribute("info");
+                    this.className = "select";
+                    var siblings = utils.siblings(this);
+
+                    utils.removeClass(this, "select");
+
+                };
+                cur.onmouseover = function () {
+                    if (this.className === "select") {
+                        return;
+                    }
+                    this.className = "hover";
+                    this.innerHTML = cur.getAttribute("info");
+                };
+                cur.onmouseout = function () {
+                    if (this.className === "select") {
+                        return;
+                    }
+                    this.className = "";
+                    this.innerHTML = cur.getAttribute("index");
+                }
+            })(i);
+        }
+    }();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, span {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+        }
+
+        #div1 {
+            position: relative;
+            margin: 20px auto;
+            padding: 0 5px 0 35px;
+            width: 900px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px dashed #08BECE;
+        }
+
+        #div1 span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            background: #ff3333;
+        }
+        #div1 span img{
+            width: 100%;
+            height: 100%;
+        }
+
+        #div2 {
+            width: 900px;
+            height: 30px;
+            white-space: nowrap;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div id="div1">
+    <span><img src="img/10.jpg"/></span>
+    <div id="div2">近年来，有这样一种说法，流传甚广：“英国人赫德控制下的晚清中国海关基本上杜绝了贪腐，是大清帝国唯一没有贪污腐败的衙门。”①中国海关被洋人控制，武力上输给人家，已是一重屈辱；洋人控制的海关，还成了中国唯一没有贪腐的衙门，文明上输给人家，可就是第二重更彻底的屈辱了</div>
+</div>
+<script type="text/javascript">
+    var oDiv = document.getElementById("div2");
+    var val=oDiv.innerHTML;
+      window.setInterval(function(){
+          var oldL = oDiv.scrollLeft;
+          oDiv.scrollLeft+=1;
+
+          var newL=oDiv.scrollLeft;
+          if(oldL===newL){
+              oDiv.innerHTML+=val;
+          }
+
+      },10);
+
+
+
+
+</script>
+
+</body>
+</html>

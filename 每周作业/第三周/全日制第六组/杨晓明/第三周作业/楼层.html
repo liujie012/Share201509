@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width: 100%;
+
+            background: #ffe470;
+            background: -webkit-linear-gradient(top left, #008000, #08BECE, #ff3333, #ffe470);
+            background: -moz-linear-gradient(top left, #008000, #08BECE, #ff3333, #ffe470);
+            background: -ms-linear-gradient(top left, #008000, #08BECE, #ff3333, #ffe470);
+            background: -o-linear-gradient(top left, #008000, #08BECE, #ff3333, #ffe470);
+            background: linear-gradient(top left, #008000, #08BECE, #ff3333, #ffe470);
+        }
+
+        #ul1,li{
+            list-style: none ;
+        }
+        li{
+            position: relative;
+            height: 666px;
+            margin: 0 50px;
+        }
+        li .left{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            background: yellow;
+        }
+        li .right{
+            margin-left: 35px;
+
+        }
+        li .right img{
+            width: 100%;
+            height: 666px;
+        }
+        #ul2{position: fixed;
+            top: 100px;
+            left: -40px;
+            width: 20px;
+            height: 200px;
+        }
+        #ul2 li{
+            width: 40px;
+            height: 30px;
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 30px;
+            margin-top: 20px;
+            text-align: center;
+            cursor: pointer;
+            background: pink;
+            color:red;
+        }
+
+        /*#ul3{position: fixed;*/
+            /*top: 100px;*/
+            /*left: -40px;*/
+            /*width: 20px;*/
+            /*height: 200px;*/
+        /*}*/
+        /*#ul3 li{*/
+            /*display: none;*/
+            /*width: 40px;*/
+            /*height: 30px;*/
+            /*font-size: 15px;*/
+            /*font-weight: bold;*/
+            /*line-height: 30px;*/
+            /*margin-top: 20px;*/
+            /*text-align: center;*/
+            /*cursor: pointer;*/
+            /*background: pink;*/
+            /*color:red;*/
+        /*}*/
+        /*#ul2 li:hover #ul3 li{*/
+            /*display: block;*/
+        /*}*/
+
+
+    </style>
+</head>
+<body>
+
+
+<ul id="ul1">
+    <!--<li> <div class="left">1</div><div class="right"><img src="js/img/1.jpg"  ></div></li>;-->
+    <!--<li> <div class="left">2</div><div class="right"><img src="js/img/2.jpg"  ></div></li>-->
+    <!--<li> <div class="left">3</div><div class="right"><img src="js/img/3.jpg"  ></div></li>-->
+    <!--<li> <div class="left">4</div><div class="right"><img src="js/img/4.jpg"  ></div></li>-->
+    <!--<li> <div class="left">5</div><div class="right"><img src="js/img/5.jpg"  ></div></li>-->
+
+ </ul>
+<ul id="ul2">
+    <li>1F</li>
+    <li>2F</li>
+    <li>3F</li>
+    <li>4F</li>
+    <li>5F</li>
+</ul>
+
+<script charset="utf-8"type="text/javascript"src="js/json.js"></script>;
+<script charset="utf-8"type="text/javascript"src="js/utils.js"></script>
+<script charset="utf-8"type="text/javascript"src="js/img"></script>
+<script type="text/javascript">
+    var oUl2=document.getElementById("ul2");
+    var oUl=document.getElementById("ul1");
+
+    var oLis=oUl2.getElementsByTagName("li");
+
+    var imgList=oUl.getElementsByTagName("img");
+
+//数据绑定
+    function bindData() {
+        var str = "";
+        for (var i = 0; i < dataAry.length; i++) {
+            var cur = dataAry[i];
+
+            str += "<li>";
+            str += "<div class='left'>"+cur.floor+"</div>";
+            str += "<div class='right'><img src='"+cur.logo+"'></div>";
+            str += "</li>";
+        }
+        oUl.innerHTML = str;
+    }
+    bindData();
+
+
+function init(){
+    for (var i=0;i<oLis.length;i++) {
+        var winH = document.documentElement.clientHeight || document.body.clientHeight;
+        oLis[i].index = i;
+        oLis[i].onmouseover = function () {
+            document.documentElement.scrollTop = winH * this.index;
+            document.body.scrollTop = winH * this.index;
+
+        };
+
+    }
+
+}
+ init();
+
+
+</script>
+
+</body>
+</html>

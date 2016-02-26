@@ -1,0 +1,41 @@
+@charset "UTF-8";
+body,div,table,ul,li{
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-family:"Microsoft Yahei", Arial, SimSun;
+}
+#box{
+    margin: 10px auto;
+    padding: 20px;
+    width: 400px;
+    border: 1px solid black;
+}
+#tab{
+
+}
+#tab thead tr{
+    height: 35px;
+    line-height: 35px;
+    background: green;
+}
+#tab thead tr th{
+    width: 100px;
+}
+#tab thead tr th.cursor{
+    cursor: pointer;
+}
+#tab tbody tr{
+    height: 30px;
+    line-height: 30px;
+}
+#tab tbody tr td{
+    text-align: center;
+}
+#tab tbody tr.bg0 {
+
+ }
+#tab tbody tr.bg1 {
+    background: blue;
+
+}

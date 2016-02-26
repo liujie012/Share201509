@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<link href="main.css" rel="stylesheet" />
+<body>
+	<div class="content" id="content">
+		<ul class="nav">
+			<li class="aa select bb">F1</li>
+			<li>F2</li>
+			<li>F3</li>
+			<li>F4</li>
+			<li>F5</li>
+		</ul>
+		<div class="box">F1</div>
+		<div class="box">F2</div>
+		<div class="box">F3</div>
+		<div class="box">F4</div>
+		<div class="box">F5</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="util.js"></script>
+<script type="text/javascript">
+	var content = document.getElementById('content');
+	//设置box偏移body的高度设置到导航中
+	var boxEle = util.getElementByClassName(content,'box'),
+		ul = util.childNodes(content,'ul')[0],
+		navLis = util.childNodes(ul,'li');
+	for(var i=0; i<boxEle.length; i++){
+		util.childNodes(ul,'li')[i].setAttribute('offset',util.offset(boxEle[i]).top);
+		util.childNodes(ul,'li')[i].setAttribute('maxOffset',util.offset(boxEle[i]).top + boxEle[i].clientHeight);
+	};
+	document.body.onclick = function(event){
+		event = event || window.event;
+		var target = event.target || event.srcElement;
+		if(target.parentNode  && target.parentNode.className == 'nav'){
+			navClick.call(target);
+			util.win('scrollTop',target.getAttribute('offset'));
+		};
+	};
+	/*
+	** this指向点击了那个元素
+	 */
+	function navClick(){
+		//给点击this添加样式
+		util.addClass(this,'select');
+		//this的相邻节点的样式删除
+		var siblingsAll = util.siblings(this);
+		for(var i=0; i<siblingsAll.length; i++){
+			util.removeClass(siblingsAll[i],'select');
+		};
+	};
+	/*
+	** 拉动滚动条导航样式的变化
+	*/
+	window.onscroll = function(){
+		var scrollData = util.win('scrollTop');
+		for(var i=0; i<boxEle.length; i++){
+			if(navLis[i].getAttribute('offset') <= scrollData && scrollData < navLis[i].getAttribute('maxOffset')){
+				navClick.call(navLis[i]);
+			};
+		};
+	};
+</script>

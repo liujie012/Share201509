@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body,div{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 100%;
+            height: 600px;
+
+            margin: 50px auto;
+
+        }
+        #top{
+            border: 1px solid red;
+            background: #ffe470;
+        }
+        #body1{
+            background: #ffe470;
+        }
+        #body2{
+            background: #999999;
+        }
+        #body3{
+            background: #ff3333;
+        }
+        #body4{
+            background: #ffe470;
+        }
+        #body5{
+            background: #990099;
+        }
+        #body6{
+            background:#08BECE;
+        }
+        #body7{
+            background: #008000;
+        }
+        div h2{
+            text-align: center;
+            font-size: 40px;
+            color: #ffffff;
+        }
+        ul{
+
+            position: fixed;
+            left: 0;
+            top: 200px;
+            width: 20px;
+            padding: 10px;
+            margin-left: 10px;
+            display: none;
+        }
+        ul li{
+            list-style: none;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-left: 3px;
+            border-bottom: 1px dashed #999999;
+        }
+        ul li:hover {
+            background: red;
+
+        }
+        
+
+
+    </style>
+</head>
+<body>
+
+<div id="body1"><h2>一楼</h2></div>
+
+<div id="body2"><h2>二楼</h2></div>
+
+<div id="body3"><h2>三楼</h2></div>
+
+<div id="body4"><h2>四楼</h2></div>
+
+<div id="body5"><h2>五楼</h2></div>
+
+<div id="body6"><h2>六楼</h2></div>
+
+<div id="body7"><h2>七楼</h2></div>
+<ul id="ul1">
+    <li id="on1">1F</li>
+    <li id="on2">2F</li>
+    <li id="on3">3F</li>
+    <li id="on4">4F</li>
+    <li id="on5">5F</li>
+    <li id="on6">6F</li>
+    <li id="on7">7F</li>
+</ul>
+</body>
+</html>
+<script type="text/javascript" >
+
+  function scrollMove() {
+      var curT = document.documentElement.scrollTop || document.body.scrollTop;
+      var winH = document.documentElement.clientHeight || document.body.clientHeight;
+      if (curT >= (winH/ 2)) {
+          ul1.style.display = "block";
+      } else {
+          ul1.style.display = "none";
+      }
+  }
+  window.onscroll = scrollMove;
+
+
+    var on1 = document.getElementById("on1");
+    on1.onclick = function () {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+    };
+    var on2 = document.getElementById("on2");
+    on2.onclick = function () {
+        document.documentElement.scrollTop = 650;
+        document.body.scrollTop = 650;
+    };
+    var on3 = document.getElementById("on3");
+    on3.onclick = function () {
+        document.documentElement.scrollTop = 1300;
+        document.body.scrollTop = 1300;
+    };
+    var on4 = document.getElementById("on4");
+    on4.onclick = function () {
+        document.documentElement.scrollTop = 1950;
+        document.body.scrollTop = 1950;
+    };
+    var on5 = document.getElementById("on5");
+    on5.onclick = function () {
+        document.documentElement.scrollTop = 2600;
+        document.body.scrollTop = 2600;
+    };
+    var on6 = document.getElementById("on6");
+    on6.onclick = function () {
+        document.documentElement.scrollTop = 3250;
+        document.body.scrollTop = 3250;
+    };
+    var on7 = document.getElementById("on7");
+    on7.onclick = function () {
+        document.documentElement.scrollTop = 3900;
+        document.body.scrollTop = 3900;
+    };
+
+  /*  //优化
+   var Ul1=document.getElementById("ul1");
+   var oLis=Ul1.getElementsByTagName("li");
+   for(var i=0;i<oLis.length;i++){
+   var oli=oLis[i];
+   function scrollTop(){
+   oli.onclick=function(){
+
+   }
+   }
+   scrollTop()
+   }                             代码优化和动画效果正在研究
+   */
+
+
+
+</script>

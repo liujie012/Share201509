@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>京东首页左侧的楼层索引和定位效果</title>
+    <style>
+        body, div, ul, li {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+            list-style: none;
+        }
+
+        #banner, #footer {
+            width: 1200px;
+            height: 1000px;
+            margin: 0 auto;
+            border: 1px solid red;
+            text-align: center;
+        }
+
+        #banner {
+            margin-top: 50px;
+        }
+
+        .floor {
+            width: 1200px;
+            height: 700px;
+            margin: 30px auto;
+            border: 1px solid black;
+            text-align: center;
+            position: relative;
+        }
+
+        #fixedBar {
+            z-index: 5;
+            position: fixed;
+            left: -7.5px;
+
+            display: none;
+            width: 30px;
+            overflow: hidden;
+        }
+
+        #fixedBar li {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            overflow: hidden;
+            margin-top: -1px;
+            cursor: pointer;
+        }
+
+        #fixedBar li a {
+            display: block;
+            width: 30px;
+            height: 30px;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+
+        .current {
+            color: red;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="banner">轮播位</div>
+<div class="floor" id="floorOne">一楼服饰</div>
+<div class="floor" id="floorTwo">二楼美妆</div>
+<div class="floor" id="floorThree">三楼手机</div>
+<div class="floor" id="floorFour">四楼家电</div>
+<div class="floor" id="floorFive">五楼数码</div>
+<div class="floor" id="floorSix">六楼运动</div>
+<div class="floor" id="floorSeven">七楼居家</div>
+<div class="floor" id="floorEight">八楼母婴</div>
+<div class="floor" id="floorNine">九楼食品</div>
+<div class="floor" id="floorTen">十楼图书</div>
+<div class="floor" id="floorEleven">十一楼服务</div>
+<div id="footer">底部位</div>
+<div id="fixedBar">
+    <ul>
+        <li><a>1F</a></li>
+        <li><a>2F</a></li>
+        <li><a>3F</a></li>
+        <li><a>4F</a></li>
+        <li><a>5F</a></li>
+        <li><a>6F</a></li>
+        <li><a>7F</a></li>
+        <li><a>8F</a></li>
+        <li><a>9F</a></li>
+        <li><a>10F</a></li>
+        <li><a>11F</a></li>
+    </ul>
+</div>
+<script charset="utf-8" type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    var oBar = document.getElementById("fixedBar");
+    var oUl = utils.children(oBar, "ul");
+    var oLis = document.getElementsByTagName("li");
+    var floorList = document.getElementsByClassName("floor");
+    var oFooter = document.getElementById("footer");
+    var clintH = utils.win("clientHeight");
+    var footerOffsetTop = utils.offset(oFooter).top;
+
+
+
+    //将每一楼距离body的偏移量放入一个数组，控制bar的位置
+    function init() {
+        oBar.style.top = (clintH - oBar.offsetHeight) / 2 + "px";
+        var ary = [];
+        for (var i = 0; i < floorList.length; i++) {
+            var curFloor = floorList[i];
+            var offetBodyHeight = utils.offset(curFloor).top;
+            ary[ary.length] = offetBodyHeight;
+
+        }
+        return ary;
+    }
+    var res = init();
+    //监听滚动时 滚到某楼层楼层，bar上的对应楼层点亮
+    function obarScroll() {
+        var navigatorTop = utils.win("clientHeight") + utils.win("scrollTop");
+        oBar.style.display = navigatorTop >= res[0] ? "block" : "none"; //->当前浏览器底边框距离body的上偏移大于等于一楼距离body的距离时bar出来
+        oBar.style.top = (clintH - oBar.offsetHeight) / 2 + "px";
+
+        for (var i = 0; i < oLis.length; i++) {
+            utils.removeClass(oLis[i], "current");
+            if (navigatorTop >= res[i] && navigatorTop < res[i + 1]) {
+                utils.addClass(oLis[i], "current");
+            }
+            if (navigatorTop >= res[10] && navigatorTop < footerOffsetTop) {
+                utils.addClass(oLis[10], "current");
+            }
+        }
+    }
+
+    //点击bar上的楼层，自动滚动到对应楼层
+    for (var i = 0; i < oLis.length; i++) {
+        var curOlis = oLis[i];
+        ~function (i) {
+            curOlis.onclick = function () {
+                var floor = utils.getElementsByClass('floor')[i];//要去的楼层
+                var offsetIndex = utils.offset(floor).top; // 获取到要滚动到哪里 offsetIndex其实就是res［i］
+                var curT = utils.win("scrollTop"); // 获取到现在在哪
+                var scrollDistance = offsetIndex - curT; // 计算要滚动多少距离
+                var step = (scrollDistance / 500) * 10; // 步长（速度 如果向上滚动就是负数）
+
+                var timer = window.setInterval(function () {
+                    curT += step;
+                    // 要滚动多少距离如果比步长的绝对值小 就是运动完了
+                    if (Math.abs(curT - offsetIndex) <= Math.abs(step)) {
+                        // 解决差几px没到位的bug
+                        utils.win("scrollTop", offsetIndex-30);  //30px margin
+                        clearInterval(timer);
+                    } else {
+                        utils.win("scrollTop", curT);
+                    }
+                }, 10);
+
+            }
+        }(i);
+    }
+    window.onscroll = obarScroll;
+</script>
+</body>
+</html>

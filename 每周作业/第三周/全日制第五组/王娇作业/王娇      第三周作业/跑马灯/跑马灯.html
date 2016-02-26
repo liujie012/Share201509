@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="reset.css"/>
+    <style type="text/css">
+        #outer {
+            position: relative;
+            margin: 20px auto;
+            padding: 0 5px 0 35px;
+            width: 900px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px dashed purple;
+        }
+
+        #outer span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 30px;
+        }
+        #outer span img{
+            margin: 8px;
+
+        }
+        #inner {
+            width: 900px;
+            height: 30px;
+            white-space: nowrap;
+            overflow: hidden;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="outer">
+    <span><img src="img/icon.jpg"/></span>
+
+    <div id="inner"><p>新版经理人论坛上线了：亲爱的用户，为了更好的提供服务，神州英才推出了全新经理人论坛平台。
+        从即日起面向网站所有的会员朋友们开放公测！上线的社区平台，有全新的读版、读帖页样式，
+        增添了更多的交互功能，关注用户需求和使用感受。目前开通的社区可能还会有很多不足或需要改进的地方，
+        希望您在使用后给我们提出宝贵的意见建议。我们会根据大家的意见建议，不断完善新社区功能，
+        以便为大家提供更优质的服务。感谢您对神州英才的长期关注与支持，
+        希望社区能给您带来全新的体验及感受。</p>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    ~function () {
+    var inner = document.getElementById("inner");
+    var val = inner.innerHTML;
+//    window.setInterval(function () {
+//        var oldL = inner.scrollLeft;
+//        inner.scrollLeft += 1;
+//        var newL = inner.scrollLeft;
+//        if (oldL === newL) {
+//            inner.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;" + val;
+//        }
+//    }, 10);
+    var timer = null;
+    function init() {
+        timer = window.setInterval(function () {
+            var curL = inner.scrollLeft;
+            inner.scrollLeft = curL + 1;
+            var nowL = inner.scrollLeft;
+            if (curL === nowL) {
+                inner.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;" + val;
+            }
+        }, 10);
+    }
+
+    init();
+
+    inner.onmouseover = function () {
+        window.clearInterval(timer);
+    };
+    inner.onmouseout = init;
+    }();
+</script>

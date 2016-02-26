@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="Css/reset.css"/>
+    <style type="text/css">
+        .roll-box {
+            width: 800px;
+            margin: 10px auto;
+            border: 1px dashed #08BECE;
+        }
+
+        .roll-content {
+            margin-left: 30px;
+            height: 30px;
+            line-height: 30px;
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: 14px;
+            font-family: "Microsoft Yahei";
+        }
+
+        .roll-ico {
+            display: block;
+            float: left;
+        }
+
+        .roll-ico img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="roll-box">
+    <span class="roll-ico">
+        <img src="Imgs/jian.gif"/>
+    </span>
+
+    <div id="scroll-left" class="roll-content">
+        新版经理人论坛上线了：亲爱的用户，为了更好的提供服务，神州英才推出了全新经理人论坛平台。从即日起面向网站所有的会员朋友们开放公测！上线的社区平台，有全新的读版、读帖页样式，增添了更多的交互功能，关注用户需求和使用感受。
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8" src="Js/utils.js"></script>
+<script type="text/javascript">
+    var oDiv = document.getElementById("scroll-left");
+    var oDivVal = oDiv.innerHTML;
+    var timer = null;
+    bindTimer();
+    function bindTimer() {
+        timer = window.setInterval(function () {
+            if (oDiv.innerHTML.length > oDivVal.length*3) {
+                oDiv.innerHTML = oDivVal;
+                return;
+            }
+            var oldLeft = oDiv.scrollLeft;
+            oDiv.scrollLeft++;
+            var newLeft = oDiv.scrollLeft;
+            if (oldLeft === newLeft) {
+                oDiv.innerHTML += "&nbsp;&nbsp;" + oDivVal;
+            }
+        }, 5)
+    }
+    oDiv.onmousemove = function () {
+        window.clearInterval(timer);
+    }
+    oDiv.onmouseout = function () {
+        bindTimer();
+    }
+
+</script>
+</body>
+</html>

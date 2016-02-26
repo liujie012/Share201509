@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+        }
+
+        #box {
+            position: relative;
+            margin: 50px auto;
+            height: 30px;
+            width: 950px;
+            border: 1px dashed green;
+        }
+
+        #box span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 30px;
+            width: 30px;
+            background: lightsalmon;
+        }
+
+        #inner {
+            position: absolute;
+            top: 0;
+            left: 30px;
+            width: 920px;
+            height: 30px;
+            line-height: 30px;
+            white-space: nowrap;
+            overflow: hidden;
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <span></span>
+
+    <div id="inner">
+        新版经理人论坛上线了：亲爱的用户，为了更好的提供服务，神州英才推出了全新经理人论坛平台。从即日起面向网站所有的会员朋友们开放公测！上线的社区平台，有全新的读版、读帖页样式，增添了更多的交互功能，关注用户需求和使用感受。目前开通的社区可能还会有很多不足或需要改进的地方，希望您在使用后给我们提出宝贵的意见建议。我们会根据大家的意见建议，不断完善新社区功能，以便为大家提供更优质的服务。感谢您对神州英才的长期关注与支持，希望社区能给您带来全新的体验及感受。
+    </div>
+</div>
+<script type="text/javascript">
+    var oDiv = document.getElementById("inner");
+    var val = oDiv.innerHTML;
+    function textMove() {
+        var oldL = oDiv.scrollLeft;
+        oDiv.scrollLeft += 1;
+        var newL = oDiv.scrollLeft;
+        if (oldL === newL) {
+            oDiv.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;" + val;
+        }
+    }
+    var timer = window.setInterval(textMove, 10);
+    oDiv.onmouseover = function () {
+        window.clearInterval(timer);
+    };
+    oDiv.onmouseout = function () {
+        timer = window.setInterval(textMove, 10);
+    }
+
+</script>
+
+</body>
+</html>

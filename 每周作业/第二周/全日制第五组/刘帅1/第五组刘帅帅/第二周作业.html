@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    /*  一、JSON是什么？
+     json是前后台进行数据交互的一种“数据格式 ”
+     二、(JSON和JavaScript对象有什么区别？)如何把JS对象转化为JSON字符串？又如何把JSON字符串转化为JavaScript对象？
+      JSON格式的对象和JavaScript对象的区别在于，JSON格式的对象的属性名使用"" 包起来的 。用JSON.stringify()来把JS对象转化为JSON字符串。
+     三、数组和对象之间的关系是什么？
+     数组是对象，当用typeof检测数组的时候返回的是 "Object"
+     四、 call和apply的作用的区别是什么 ？
+     call和apply的区别在于 ， call传递参数的时候从第二个参数开始一个个的传递进函数，apply传递参数时从第二个参数开始先把需要传递的参数都放到一个数组中，然后在一个个传递进去函数
+     五 、 eval的作用是什么 ?
+     把字符串转化为JS表达式来执行
+     六、alert({})弹出的结果是什么，为什么？
+       弹出的是[object,object],
+     七、如何严格的判断一个数据是数组（Array）类的实例
+     instanceof   constructor
+     八、说一说JS中异常捕获是用什么代码实现的？
+       try{}catch(e){}
+     九、用什么方法实现对函数内置的arguments对象进行排序？为什么文档集合不能直接借用数组类的sort方法进行排序呢？
+     function listToArray (likeAry){
+     var ary=[];
+     try{
+     ary=Array.prototype.slice.call(likeAry,0);
+     }catch (e){
+     for(var i=0;i<likeAry.length;i++){
+     ary[ary.length]=likeAry[i];
+     }
+     }
+     return ary;
+     }
+      文档集合是类数组，不是数组，要先转换为数组类型的，在使用sort方法
+     十、function fn1(){alert(1)};
+     function fn2(){alert(2)};
+     fn3=fn2.call;
+     fn2.call(fn1);//2 因为只是把fn2中this改变成了fn1，执行的还是fn2
+     fn3.call(fn1);//1 因为相当于fn2.call.call(fn1),两个及以上call是让第一个传递进来的形参执行
+
+
+
+
+     */
+</script>
+
+</body>
+</html>

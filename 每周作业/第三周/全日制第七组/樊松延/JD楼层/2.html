@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        html, body, div, ul, li, p, a, img, h1, h2, h3, ol {
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            font-family: "\5FAE\8F6F\96C5\9ED1", 'Microsoft YaHei', sans-serif;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #banner {
+            width: 100%;
+            height: 1318px;
+            margin: 0 auto;
+            background: url("img/banner.jpg") no-repeat center center;
+            background-size: cover;
+        }
+
+        #cont {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        #cont .mainCont {
+            width: 100%;
+            height: 550px;
+        }
+
+        #cont .mainCont img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #cont h2 {
+            margin: 15px 0 10px;
+            font-size: 20px;
+        }
+
+        #cont .content {
+            width: 100%;
+            height: 530px;
+            border: 1px solid #ddd;
+        }
+
+        #leftList {
+            position: fixed;
+            left: 15px;
+            top: 25%;
+        }
+
+        #leftList li {
+            padding: 10px;
+            width: 15px;
+            height: 20px;
+            background: #f1ffd9;
+            border-bottom: 1px dashed #ccc;
+            cursor: pointer;
+            text-align: center;
+            transition: all ease-in-out 0.2s;
+        }
+
+        #leftList li:hover {
+            background: red;
+            color: #fff;
+        }
+
+        #cont .mainCont {
+            margin-bottom: 70px;
+        }
+    </style>
+
+</head>
+<body>
+<div id="banner">
+</div>
+<div id="cont">
+    <div class="f1 mainCont"><h2>1F</h2>
+
+        <div class="content"><img src="img/1.jpg" alt="001"/></div>
+    </div>
+    <div class="f2 mainCont"><h2>2F</h2>
+
+        <div class="content"><img src="img/2.jpg" alt="001"/></div>
+    </div>
+    <div class="f3 mainCont"><h2>3F</h2>
+
+        <div class="content"><img src="img/3.jpg" alt="001"/></div>
+    </div>
+    <div class="f4 mainCont"><h2>4F</h2>
+
+        <div class="content"><img src="img/4.jpg" alt="001"/></div>
+    </div>
+    <div class="f5 mainCont"><h2>5F</h2>
+
+        <div class="content"><img src="img/5.jpg" alt="001"/></div>
+    </div>
+    <div class="f6 mainCont"><h2>6F</h2>
+
+        <div class="content"><img src="img/6.jpg" alt="001"/></div>
+    </div>
+    <div class="f7 mainCont"><h2>7F</h2>
+
+        <div class="content"><img src="img/7.jpg" alt="001"/></div>
+    </div>
+</div>
+<ul id="leftList">
+    <li>1F</li>
+    <li>2F</li>
+    <li>3F</li>
+    <li>4F</li>
+    <li>5F</li>
+    <li>6F</li>
+    <li>7F</li>
+</ul>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    var oUl = document.getElementById("leftList");
+    var oLis = oUl.getElementsByTagName("li");
+    var cont = document.getElementsByClassName("content");
+    var banner = document.getElementById("banner");
+    var bannerTop = banner.offsetHeight;
+    var contHeight = cont.offsetHeight;
+    for (var i = 0; i < oLis.length; i++) {
+        ~function (i) {
+            var curLi = oLis[i];
+
+            curLi.onclick = function () {
+                var targetT = utils.offset(cont[i]).top;
+                var curScroll = document.documentElement.scrollTop || document.body.scrollTop;
+                var step = ((targetT - curScroll) / 1000) * 10;
+                var direction = (targetT - curScroll) > 0 ? 1 : -1;
+                var timer = window.setInterval(function () {
+                    if ((curScroll - targetT) * direction >= 0) {
+                        document.documentElement.scrollTop = targetT;
+                        document.body.scrollTop = targetT;
+                        clearInterval(timer);
+                        return;
+                    }
+                    curScroll += step;
+                    document.documentElement.scrollTop = curScroll;
+                    document.body.scrollTop = curScroll;
+                }, 10);
+            }
+
+        }(i)
+    }
+
+
+</script>
+</body>
+</html>

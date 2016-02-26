@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<title>京东商城楼层选择</title>
+	<style>
+		html, body, div, span, h3, aside, section {
+			margin: 0;
+			padding: 0;
+			font-family: "微软雅黑";
+			font-size: 14px;
+			-webkit-user-select: none;
+		}
+		body {
+			padding-bottom: 600px;
+		}
+		section {
+			display: block;
+			margin: 0 auto 10px auto;
+			padding: 20px;
+			width: 500px;
+			height: 600px;
+
+			background-color: lightgreen;
+		}
+		section h1 {
+			width: 100%;
+			color: red;
+			margin-top: 50px;
+			text-align: center;
+		}
+		section h3 {
+			width: 100%;
+			text-align: center;
+		}
+		aside {
+			display: none;
+			position: fixed;
+			top: 250px;
+			cursor: pointer;
+			box-shadow: 1px 1px 1px 1px #999;
+		}
+		aside.down {
+			display: block;
+			animation: downAnimation 0.5s ease-in-out;
+			-moz-animation: downAnimation 0.5s ease-in-out; /* Firefox */
+			-webkit-animation: downAnimation 0.5s ease-in-out;  /* Safari 和 Chrome */
+			-o-animation: downAnimation 0.5s ease-in-out;   /* Opera */
+		}
+		@keyframes downAnimation {
+		    from {transform: translate(0,250px);opacity: 0;}
+		    to {transform: translate(0,0);opacity: 1;}
+		}
+		@-moz-keyframes downAnimation {
+		    from {transform: translate(0,250px);opacity: 0;}
+		    to {transform: translate(0,0);opacity: 1;}
+		}
+		@-webkit-keyframes downAnimation {
+		    from {-webkit-transform: translate(0,250px);opacity: 0;}
+		    to {-webkit-transform: translate(0,0);opacity: 1;}
+		}
+		@-o-keyframes downAnimation {
+		    from {transform: translate(0,250px);opacity: 0;}
+		    to {transform: translate(0,0);opacity: 1;}
+		}
+		aside span {
+			display: block;
+			width: 30px;
+			height: 20px;
+			color: black;
+			text-align: center;
+			background-color: lightgrey;
+			margin-top: 1px;
+		}
+		aside span.on {
+			background-color: orange;
+		}
+		aside span:hover {
+			color: white;
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+<aside id="levelScroll">
+
+</aside>
+<div id="main">
+<section class="items">
+<h3>楼层1</h3>
+<div>
+<!-- //内容	 -->
+<h1>琴</h1>
+</div>
+</section>
+
+<section class="items">
+<h3>楼层2</h3>
+<div>
+<!-- //内容	 -->
+<h1>棋</h1>
+</div>
+</section>
+
+<section class="items">
+<h3>楼层3</h3>
+<div>
+<!-- //内容	 -->
+<h1>书</h1>
+</div>
+</section>
+
+<section class="items">
+<h3>楼层4</h3>
+<div>
+<!-- //内容	 -->
+<h1>画</h1>
+</div>
+</section>
+
+<section class="items">
+<h3>楼层5</h3>
+<div>
+<!-- //内容	 -->
+<h1>梅</h1>
+</div>
+</section>
+
+<section class="items">
+<h3>楼层6</h3>
+<div>
+<!-- //内容	 -->
+<h1>兰</h1>
+</div>
+</section>
+
+<section class="items">
+<h3>楼层7</h3>
+<div>
+<!-- //内容	 -->
+<h1>竹</h1>
+</div>
+</section>
+
+<section class="items">
+<h3>楼层8</h3>
+<div>
+<!-- //内容	 -->
+<h1>菊</h1>
+</div>
+</section>
+</div>
+</body>
+<script type="text/javascript" src="./json.js"></script>
+<script type="text/javascript" src="./jsonJD.js"></script>
+<script type="text/javascript" src="./utils.js"></script>
+<script type="text/javascript" src="./jd.js"></script>
+<!--<script type="text/javascript" src="./levelScroll.js">
+	var levelScroll = new levelScroll({
+	    selectorId: "goTo2",
+	    selectorInnerTag: "span",
+	    selectorInnerClass: "selector",
+	    selectorInnerFadeInClass: "down",
+	    selectorDataSource: "jsonJD",
+	    duration: 300,
+	    mappingObjectId: "main"
+	});
+	levelScroll.init();
+</script>-->
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box div {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 500px;
+            font-size: 200px;
+        }
+
+        #box div:nth-child(odd) {
+            background: #95bce2;
+        }
+
+        #box div:nth-child(even) {
+            background: #ffe470;
+        }
+
+        #bar {
+            position: fixed;
+            left: 20px;
+            top: 150px;
+            margin-top: -120px;
+            width: 100px;
+            height: 720px;
+            background: #eee;
+            list-style: none;
+        }
+
+        #bar li {
+            font-size: 16px;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            text-align: center;
+            line-height: 89px;
+            height: 89px;
+            border-bottom: 1px dashed #666;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        #bar li:nth-last-child(1) {
+            border-bottom: none;
+        }
+
+        #bar li.select {
+            background: #FFCCFF;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <div>放</div>
+    <div>下</div>
+    <div>执</div>
+    <div>念</div>
+    <div>便</div>
+    <div>是</div>
+    <div>智</div>
+    <div>慧</div>
+</div>
+<ul id="bar">
+    <li class="select">F1</li>
+    <li>F2</li>
+    <li>F3</li>
+    <li>F4</li>
+    <li>F5</li>
+    <li>F6</li>
+    <li>F7</li>
+    <li>F8</li>
+</ul>
+<script src="lib.js"></script>
+<script type="text/javascript">
+    //思路：绑定点击和滚动，中间做一些状态的判断
+    var oDivs = document.querySelectorAll('#box>div');
+    var oLis = document.querySelectorAll('#bar>li');
+    window.onscroll = function () {
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        [].forEach.call(oDivs, function (item, index) {
+            if (offset(item).top < offset(oLis[index]).top + scrollTop) {
+                changTab(oLis, index);
+            }
+        });
+    };
+    [].forEach.call(oLis, function (item, index) {
+        var timer = null;
+        item.onmousemove = function (e) {
+            e = e || window.event;
+            var tar = e.target || e.srcElement;
+            window.clearInterval(timer);
+            if (tar.tagName.toLowerCase() != 'li') return;
+            var current = document.documentElement.scrollTop || document.body.scrollTop;
+            var final = offset(oDivs[index]).top;
+            var changeVal = final - current;
+            var step = changeVal / 300 * 10;
+            timer = window.setInterval(function () {
+                if (Math.abs(current - final) < 10) {
+                    window.clearInterval(timer);
+                    document.documentElement.scrollTop = final;
+                    document.body.scrollTop = final;
+                    return;
+                }
+                current += step;
+                document.documentElement.scrollTop = current;
+                document.body.scrollTop = current;
+            }, 10);
+        }
+    });
+</script>
+</body>
+</html>

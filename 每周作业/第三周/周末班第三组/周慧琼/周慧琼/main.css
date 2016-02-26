@@ -1,0 +1,22 @@
+@charset "utf-8";
+@import url("reset.css");
+
+.nav{position: fixed; top:50%; left: 100px;}
+.nav li{cursor: pointer; border-bottom: 1px #ccc dashed; line-height: 30px;}
+.nav li.select{color: #f00;}
+
+.box{height:1000px; width: 80%; margin:0px auto; }
+.box:nth-of-type(1){ background: #f00;}
+.box:nth-of-type(2){ background: #000;}
+.box:nth-of-type(3){ background: #ccc; height:600px;}
+.box:nth-of-type(4){ background: #333;}
+.box:nth-of-type(5){ background: #f00;}
+
+/*--图片延迟加载--*/
+.imgList{margin-top:30px;}
+.imgList li{border-bottom:1px dashed #ccc; display:-webkit-box; padding:10px;}
+.imgbox{width:120px; height:60px; background:url(img/default.jpg) no-repeat;}
+.imgbox img{width:100%; height:100%;}
+.text{-webkit-box-flex:1; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; margin-left:10px;}
+.text h3{font-size:16px; margin:5px 0px;}
+.text p{ line-height:22px;}

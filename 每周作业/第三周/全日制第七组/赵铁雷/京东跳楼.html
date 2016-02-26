@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, ul, li, img, div {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft Yahei";
+            font-size: 15px;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        img {
+            border: none;
+            width: 100%;
+            height: 771px;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+        body {
+            background: black;
+        }
+
+        #ul1 {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            z-index: 111;
+            zoom: 1;
+            margin-top: -100px;
+            padding: 5px;
+            text-align: center;
+            background: pink;
+            border: 1px solid blue;
+        }
+
+        #ul1 li {
+            height: 20px;
+            line-height: 20px;
+            border-bottom: 1px solid yellow;
+            cursor: pointer;
+        }
+
+        div {
+            background: black;
+        }
+
+
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li>1F</li>
+    <li>2F</li>
+    <li>3F</li>
+    <li>4F</li>
+    <li>5F</li>
+    <li>6F</li>
+    <li>7F</li>
+    <li>8F</li>
+    <li>9F</li>
+</ul>
+<div id="div1"></div>
+<!--<img src="" trueImg="img/1.jpeg">-->
+<!--<img src="" trueImg="img/1.jpeg">-->
+<!--<img src="" trueImg="img/1.jpeg">-->
+<!--<img src="" trueImg="img/1.jpeg">-->
+<!--<img src="" trueImg="img/1.jpeg">-->
+<script charset="UTF-8" type="text/javascript" src="js/json.js"></script>
+<script charset="UTF-8" type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    var imgList = document.getElementsByTagName("img"), oUl = document.getElementById("ul1"), oLis = oUl.getElementsByTagName("li"), oDiv = document.getElementById("div1");
+
+    function bindDate() {
+        var str = "";
+        for (var i = 0; i < dataAry.length; i++) {
+            var cur = dataAry[i];
+            str += "<img src='' trueImg=" + cur["logo"] + ">";
+        }
+        oDiv.innerHTML += str;
+    }
+    bindDate();
+
+    function init() {
+        for (var i = 0; i < imgList.length; i++) {
+            ~function (i) {
+                var curImg = imgList[i];
+                if (curImg.isLoad) return;
+                var curImgT = utils.offset(curImg).top + (curImg.offsetHeight) / 5;
+                var winT = (document.documentElement.scrollTop || document.body.scrollTop) + (document.documentElement.clientHeight || document.body.clientHeight);
+                if (curImgT < winT) {
+//                    var oImg = new Image;
+//                    oImg.src = curImg.getAttribute("trueImg");
+//                    oImg.onload = function () {
+//                        curImg.src = this.src;
+//                        curImg.isLoad = true;
+//                        fadeIn(curImg);
+//                    }
+
+
+                    var trueImg = curImg.getAttribute('trueImg');
+                    var oImg = new Image;
+                    oImg.src = trueImg;
+                    oImg.onload = function(){
+                        curImg.src = trueImg;
+                        curImg.isLoad = true;
+                        fadeIn(curImg);
+                    }
+                }
+            }(i);
+        }
+    }
+    window.setTimeout(init, 500);
+    window.onscroll = init;
+
+    for (var i = 0; i < oLis.length; i++) {
+        ~function (i) {
+
+            oLis[i].onclick = function () {
+                document.documentElement.scrollTop = document.documentElement.clientHeight *= i;
+                document.body.scrollTop = document.documentElement.clientHeight *= i;
+            }
+        }(i);
+    }
+
+    function fadeIn(curImg) {
+        var step = 0.02;
+        var count = 0;
+        var timer = window.setInterval(function () {
+            if (count >= 1) {
+                curImg.style.opacity = 1;
+                curImg.style.filter = "alpha(opacity=100)";
+                return
+            }
+            count += step;
+            curImg.style.opacity = count;
+            curImg.style.filter = "alpha(opacity=" + count * 100 + ")";
+
+        }, 10)
+    }
+
+
+</script>
+</body>
+</html>

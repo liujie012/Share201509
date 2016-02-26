@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            font-family: 微软雅黑;
+            list-style: none;
+            -webkit-user-select: none;
+        }
+
+        #big {
+            width: 906px;
+            margin: 0 auto;
+        }
+
+        #big div {
+            margin-bottom: 20px;
+            width: 900px;
+            height: 800px;
+            border: 3px solid silver;
+        }
+
+        #big div h4 {
+            font-size: 25px;
+            line-height: 800px;
+            text-align: center;
+        }
+
+        ul {
+            display: none;
+            position: fixed;
+            left: 150px;
+            top: 200px;
+        }
+
+        ul li {
+            width: 25px;
+            height: 30px;
+            border-bottom: 1px dashed silver;
+            line-height: 30px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        ul li.bg {
+            background-color: red;
+            color: white;
+        }
+    </style>
+
+
+</head>
+<body>
+<div id="big">
+    <div>
+        <h4>这是1F</h4>
+    </div>
+    <div>
+        <h4>这是2F</h4>
+    </div>
+    <div>
+        <h4>这是3F</h4>
+    </div>
+    <div>
+        <h4>这是4F</h4>
+    </div>
+    <div>
+        <h4>这是5F</h4>
+    </div>
+    <div>
+        <h4>这是6F</h4>
+    </div>
+    <div>
+        <h4>这是7F</h4>
+    </div>
+    <div>
+        <h4>这是8F</h4>
+    </div>
+    <div>
+        <h4>这是9F</h4>
+    </div>
+    <div>
+        <h4>这是10F</h4>
+    </div>
+    <div>
+        <h4>这是11F</h4>
+    </div>
+</div>
+<ul id="ul">
+    <li>1F</li>
+    <li>2F</li>
+    <li>3F</li>
+    <li>4F</li>
+    <li>5F</li>
+    <li>6F</li>
+    <li>7F</li>
+    <li>8F</li>
+    <li>9F</li>
+    <li>10F</li>
+    <li>11F</li>
+</ul>
+</body>
+
+<script charset="utf-8" type="text/javascript">
+    var oDiv = document.getElementById("big");
+    var oDivs = oDiv.getElementsByTagName("div");
+
+    var ul = document.getElementById("ul");
+    var oLis = document.getElementsByTagName("li");
+    console.log(oLis)
+
+    function bianse() {
+        for (var i = 0; i < oLis.length; i++) {
+            var cur = oLis[i];
+            cur.onmouseover = function () {
+                this.className = "bg"
+            }
+            cur.onmouseout = function () {
+                this.className = ""
+            }
+        }
+    }
+    bianse();
+
+    function hehe(curEle) {
+        var t = curEle.offsetTop, p = curEle.offsetParent;
+        while (p) {
+            t += p.offsetTop
+            t += p.clientTop
+            p = p.offsetParent
+        }
+        return t
+    }
+
+
+    function init(curEle) {
+
+        var winT = document.documentElement.scrollTop || document.body.scrollTop//页面卷曲高度
+        var cur = hehe(oDivs[curEle])//盒子上偏移量
+
+
+        if (winT < cur) {
+            var stmp = (winT - cur) / 20;
+            var timer = setInterval(function () {
+                winT -= stmp
+                document.documentElement.scrollTop -= stmp;
+                document.body.scrollTop -= stmp
+                if (Math.abs(winT) >= Math.abs(cur)) {
+                    document.documentElement.scrollTop = hehe(oDivs[curEle])
+                    document.body.scrollTop = hehe(oDivs[curEle])
+                    clearInterval(timer)
+                }
+
+            }, 10)
+        } else if (winT > cur) {
+            var stmp = (winT - cur) / 20;
+            var timer = setInterval(function () {
+                winT -= stmp
+                document.documentElement.scrollTop -= stmp;
+                document.body.scrollTop -= stmp;
+                if (winT <= cur) {
+                    document.documentElement.scrollTop = hehe(oDivs[curEle])
+                    document.body.scrollTop = hehe(oDivs[curEle])
+                    clearInterval(timer)
+
+                }
+
+
+            },10)
+        }
+    }
+
+
+    for (var i = 0; i < oLis.length; i++) {
+        var cur = oLis[i]
+        cur.index = i
+        cur.onclick = function () {
+            init(this.index)
+
+        }
+
+    }
+
+    function scrolll() {
+        var curT = oDivs[0].offsetHeight
+        var curW = document.documentElement.scrollTop || document.body.scrollTop;
+        if (curT < curW) {
+            ul.style.display = "block"
+        } else {
+            ul.style.display = "none"
+        }
+
+    }
+    window.onscroll = scrolll
+
+
+</script>
+
+</html>

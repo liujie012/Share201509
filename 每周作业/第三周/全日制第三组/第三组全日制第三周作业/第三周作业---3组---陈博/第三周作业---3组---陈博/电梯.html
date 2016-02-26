@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            margin:0;
+            padding: 0;
+            font-size: 50px;
+            color:#333;
+            text-align: center;
+            -webkit-user-select: none;
+        }
+        #ul1{
+            width: 30px;
+            list-style: none;
+            background: #fff;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            opacity: 0.9;
+            color: purple;
+            display: none;
+        }
+        #ul1 li{
+            color:royalblue;
+            font-weight: 800;
+            height: 26px;
+            line-height: 26px;
+            cursor: pointer;
+            border-bottom:1px dashed #000;
+            width: 50px;
+            font-size: 16px;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li>F1</li>
+    <li>F2</li>
+    <li>F3</li>
+    <li>F4</li>
+    <li>F5</li>
+    <li>F6</li>
+    <li>F7</li>
+    <li>F8</li>
+</ul>
+<div>F1</div>
+<div>F2</div>
+<div>F3</div>
+<div>F4</div>
+<div>F5</div>
+<div>F6</div>
+<div>F7</div>
+<div>F8</div>
+<script type="text/javascript">
+    var oDivs=document.getElementsByTagName('div');
+    var oul=document.getElementById('ul1');
+    var olis=oul.getElementsByTagName('li');
+    var aryColr=['pink','blue','green','goldenrod','turquoise','#ccc','fuchsia','purple'];
+    var yourPosition=['声闻','缘觉','人天','阿修罗','人间','畜生','恶鬼','地狱'];
+    function floot(){
+        var h=document.documentElement.clientHeight||document.body.clientHeight;
+        var w=document.documentElement.clientWidth||document.body.clientWidth;
+        var st=document.documentElement.scrollTop||document.body.scrollTop;
+        st>=h/3?oul.style.display='block':oul.style.display='none';
+        for(var i=0;i<oDivs.length;i++){
+            var cur=oDivs[i];
+            (function(i){
+                cur.innerHTML='F'+(i+1)+yourPosition[i];
+                cur.style.width=w+'px';
+                cur.style.height=h+'px';
+                cur.style.lineHeight=h+'px';
+                cur.style.color=aryColr[-i+oDivs.length-1];
+                cur.style.background=aryColr[i];
+                olis[i].style.background=aryColr[i];
+                olis[i].innerHTML='F'+(i+1);
+                olis[i].onmouseover=function(){
+                    this.innerHTML=yourPosition[i];
+                    this.style.background='#ccc';
+                }
+                olis[i].onmouseout=function(){
+                    this.innerHTML='F'+(i+1);
+                    this.style.background=aryColr[i];
+                }
+                olis[i].onclick=function(){ 
+                    var  curt=oDivs[i].offsetTop;
+                    var timer=setInterval(function(){
+                          if(st>curt){
+                              document.documentElement.scrollTop-=((st-curt)/400*7);
+                              document.body.scrollTop-=(st-curt)/400*7;
+                              st=document.documentElement.scrollTop||document.body.scrollTop;
+                              if(st-10<=curt){
+                                  document.documentElement.scrollTop=curt;
+                                  document.body.scrollTop=curt;
+                                  clearInterval(timer);
+                              }
+                          }else if(st<curt){
+                              document.documentElement.scrollTop-=(st-curt)/400*7-1;
+                              document.body.scrollTop-=(st-curt)/400*7-1;
+                              st=document.documentElement.scrollTop||document.body.scrollTop;
+                              if(st+10>=curt){
+                                  st=document.documentElement.scrollTop||document.body.scrollTop;
+                                  document.documentElement.scrollTop=curt;
+                                  document.body.scrollTop=curt;
+                                  clearInterval(timer);
+                              }
+                          }
+                          document.body.onclick=function(){
+                                clearInterval(timer);
+                          }
+                    },7)
+                }
+            })(i)
+        }
+        oul.style.top=st+(h/4)+'px';
+    }
+    floot();
+    window.onscroll=floot;
+    window.onresize=floot;
+</script>
+</body>
+</html>

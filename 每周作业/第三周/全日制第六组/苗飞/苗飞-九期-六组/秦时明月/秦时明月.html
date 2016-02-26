@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body {
+            font-family: "楷体";
+            background-color: black;
+            -webkit-user-select: none;
+        }
+
+        img {
+            vertical-align: top;
+            border: none;
+        }
+
+        .T {
+            width: 275px;
+            margin: 10px auto;
+            height: 128px;
+            background: url("img/logo0.png") no-repeat;
+        }
+
+        #box {
+            position: fixed;
+            top: 199px;
+            left: 25px;
+            width: 100px;
+            box-shadow: 5px 5px 10px 0 #cfc2a6;
+            background: black;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #box li {
+            border-bottom-left-radius: 20px;
+            border-top-right-radius: 20px;
+            margin: 0 auto;
+            width: 102px;
+            padding: 4px 0;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #cfc2a6;
+        }
+
+        #box span {
+            display: block;
+            height: 1px;
+            border-bottom: 1px dotted #760909;
+            width: 30px;
+            margin: 0 auto;
+        }
+
+        #top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 30px;
+            padding: 20px;
+            height: 30px;
+            background-color: black;
+            border-radius: 50px;
+        }
+
+        .I1 {
+            position: relative;
+            top: -8px;
+            left: -8px;
+            width: 45px;
+            height: 45px;
+            display: block;
+            cursor: pointer;
+        }
+
+        #top:hover .I1 {
+            -webkit-transform: rotate(136deg);
+        }
+
+        #outer {
+            position: relative;
+            margin: 0px auto;
+            padding: 0 11px;
+            width: 700px;
+            height: 30px;
+            line-height: 30px;
+            background: -webkit-linear-gradient(top, #760909, black, #760909);
+        }
+
+        #outer .S1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 30px;
+            background: url("img/logo3.png");
+            background-size: 100% 100%;
+        }
+
+        #outer .S2 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10px;
+            height: 30px;
+            background: url("img/logo5.png");
+            background-size: 100% 100%;
+        }
+
+        #inner {
+            width: 700px;
+            height: 30px;
+            white-space: nowrap; /*强制不换行*/
+            overflow: hidden;
+            font-weight: bold;
+            cursor: pointer;
+            color: #e3deb8;
+        }
+
+        #main {
+            width: 936px;
+            margin: 24px auto;
+            cursor: pointer;
+        }
+
+        #main li {
+
+            position: relative;
+            height: 400px;
+        }
+
+        #main .left {
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background: url("img/logo0.png") no-repeat;
+            background-size: 100% 100%;
+        }
+
+        #main img {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+        #main .right {
+            width: 100%;
+            position: absolute;
+            padding: 0 0 0px 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.3)
+        }
+
+        #main h2 {
+            margin: 5px 10px;
+            color: white;
+        }
+
+        #main p {
+            margin: 5px 10px;
+            line-height: 40px;
+            color: white;
+        }
+
+        .qsmy {
+            width: 936px;
+            margin: 0px auto;
+            margin-top: 150px;
+            padding-bottom: 50px;
+            overflow: hidden;
+        }
+
+        object {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div class="T"></div>
+<div id="box">
+    <ul>
+        <li>天问</li>
+        <span></span>
+        <li>巨阙</li>
+        <span></span>
+        <li>鲨齿</li>
+        <span></span>
+        <li>凌虚</li>
+        <span></span>
+        <li>水寒</li>
+        <span></span>
+        <li>太阿</li>
+        <span></span>
+        <li>残虹</li>
+        <span></span>
+        <li>雪霁</li>
+        <span></span>
+        <li>墨眉</li>
+        <span></span>
+        <li>秋骊</li>
+        <span></span>
+        <li>含光</li>
+    </ul>
+</div>
+<div id="top"><img class="I1" src="img/1.jpg" alt=""/></div>
+<div id="outer">
+    <span class="S1"></span>
+    <div id="inner">
+        这是一个由剑开始的世界,必将由剑结束!!!
+        生命短暂犹若露珠消散,人们在奔波中探寻答案。
+        运数仿佛大海起伏不定，掌上迷离脉纹回路漫漫。
+        长剑在黑夜吟唱悲歌，岁月如斑驳铜镜经年。
+        天际流火叩响大地之门，岁月星辰刻画沧桑年轮。
+        纵横交错兮天下之局，谁能参悟兮世事如棋。
+        这是命运的玩笑,
+        还是登顶的台阶!
+    </div>
+    <span class="S2"></span>
+</div>
+<div id="main">
+    <ul id="ul1">
+    </ul>
+</div>
+<div class="qsmy">
+    <object type="application/x-shockwave-flash"
+            data="http://www.tudou.com/v/Gos9h8wKR9o/dW5pb25faWQ9MTAyNzQ4XzEwMDAwMV8wMV8wMQ/&amp;videoClickNavigate=false/v.swf"
+            width="936" height="470">>
+    </object>
+</div>
+<script charset="utf-8" type="text/javascript" src="qsmy.js"></script>
+<script type="text/javascript">
+    var oDiv1 = document.getElementById("box"), oLis = oDiv1.getElementsByTagName("li")
+    var ary = ["天下秦王", "农家胜七", "流沙卫庄", "儒家张良", "墨家高渐离", "儒家伏念", "鬼谷盖聂", "天宗逍遥子", "墨家非攻", "道家晓梦", "儒家颜路"]
+    var res = [200, 1000, 1800, 2600, 3400, 4200, 5000, 5800, 6600, 7400, 8200, 8500]
+    for (var i = 0; i < oLis.length; i++) {
+        //跳楼
+
+        ;(function (i) {
+            oLis[i].onclick = function () {
+
+                for (var k = 0; k < oLis.length; k++) {
+                    if (k != i) {
+                        mouseout.call(oLis[k])
+                    }
+                }
+                window.onscroll = null
+                window.clearInterval(timer1)
+                var bdScroll = document.documentElement.scrollTop || document.body.scrollTop;
+                var deration = 1000
+                var interval = 10
+                var target = res[i] - bdScroll
+                var step = (target / deration) * interval
+                var timer1 = window.setInterval(function () {
+                    mouseover.call(oLis[i])
+                    if (bdScroll <= res[i] + 1 && bdScroll >= res[i] - 1) {
+                        window.onscroll = init
+                        window.clearInterval(timer1)
+                        return
+                    }
+                    bdScroll += step
+                    document.documentElement.scrollTop = bdScroll
+                    document.body.scrollTop = bdScroll
+                }, 5)
+            }
+        })(i)
+        //滑动改变内容
+        var cur = oLis[i]
+        cur.zhuFeng = cur.innerHTML
+        cur.zhufeng = i
+        function mouseover() {
+            this.innerHTML = ary[this.zhufeng]
+            this.style.background = "-webkit-linear-gradient(left,#760909,black,#760909)"
+        }
+        function mouseout() {
+            this.innerHTML = this.zhuFeng
+            try {
+                this.style.background = "-webkit-linear-gradient(left,black,black)"
+            }
+            catch (e) {
+                console.log("天黑请闭眼,啥也没看见")
+            }
+        }
+        cur.onmouseover = mouseover
+        cur.onmouseout = mouseout
+    }
+    //跑马灯
+    var oIn = document.getElementById("inner")
+    var val = oIn.innerHTML
+    function fn() {
+        var timer = window.setInterval(function () {
+            var oldS = oIn.scrollLeft
+            oIn.scrollLeft += 1
+            var newS = oIn.scrollLeft
+            if (oldS === newS) {
+                oIn.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + val
+            }
+        }, 20)
+        oIn.onmouseover = function () {
+            window.clearInterval(timer)
+        }
+        oIn.onmouseout = function () {
+            fn()
+        }
+    }
+    fn()
+    //绑定
+    var oUl = document.getElementById("ul1"), imgList = oUl.getElementsByTagName("img")
+    function bindData() {
+        var str = "";
+        for (var i = 0; i < dataAry.length; i++) {
+            var cur = dataAry[i]
+            str += "<li>"
+            str += "<div class='left'><img  trueImg='" + cur["logo"] + "'></div>"
+            str += "<div class='right'>"
+            str += "<h2>" + cur["title"] + "</h2>"
+            str += "<p>" + cur["desc"] + "</p>"
+            str += "</div>"
+            str += "</li>"
+        }
+        oUl.innerHTML = str;
+    }
+    bindData();
+    //计算偏移量
+    function offset(cur) {
+        var t = cur.offsetTop
+        var l = cur.offsetLeft
+        var p = cur.offsetParent
+        while (p) {
+            if (navigator.userAgent.indexOf("MSIE 8.0") == -1) {
+                t += p.clientTop
+                l += p.clientLeft
+            }
+            t += p.offsetTop
+            l += p.offsetLeft
+            p = p.offsetParent
+        }
+        return {left: l, top: t}
+    }
+    //图片渐现
+    function fadeIn(curImg) {
+        var count = 0;
+        var timer = window.setInterval(function () {
+            if (count >= 1) {
+                curImg.style.opacity = 1;
+                curImg.style.filter = "alpha(opacity=100)";
+                window.clearInterval(timer);
+                return;
+            }
+            count += 0.02;
+            curImg.style.opacity = count;
+            curImg.style.filter = "alpha(opacity=" + count * 100 + ")";
+        }, 10);
+    }
+    //图片延时加载
+    var oTop = document.getElementById("top")
+    function init() {
+        for (var i = 0; i < imgList.length; i++) {
+            var curImg = imgList[i]
+            ~function (i) {
+                var curImg = imgList[i]
+                if (curImg.isload) return;
+                var curImgT = offset(curImg).top + curImg.offsetHeight;
+                var winT = (document.documentElement.clientHeight || document.body.clientHeight) + (document.documentElement.scrollTop || document.body.scrollTop);
+                if ((curImgT - 100) < winT) {
+                    var oImg = new Image;
+                    oImg.src = curImg.getAttribute("trueImg")
+                    oImg.onload = function () {
+                        curImg.src = this.src
+                        curImg.isload = true
+                        fadeIn(curImg)
+                    }
+                }
+            }(i)
+        }
+        var cT = document.documentElement.scrollTop || document.body.scrollTop;
+        var wH = document.documentElement.clientHeight || document.body.clientHeight;
+        //滚动 触发小剑
+        if (cT >= (wH / 10)) {
+            oTop.style.display = "block";
+        } else {
+            oTop.style.display = "none";
+        }
+        oDiv1.style.display = "block"
+        //滚动 触发楼层
+        for (var j = 0; j < res.length; j++) {
+            if (cT >= res[j] && cT < res[j + 1]) {
+                mouseover.call(oLis[j])
+                oLis[j].onmouseout = null
+                for (var m = 0; m < oLis.length; m++) {
+                    if (m != j) {
+                        oLis[m].onmouseout = mouseout;
+                    }
+                }
+            }
+            else {
+                mouseout.call(oLis[j])
+            }
+        }
+    }
+    window.setTimeout(init, 500);
+    window.onscroll = init;
+    //小剑点击回到顶部
+    oTop.onclick = function () {
+        for (var k = 0; k < oLis.length; k++) {
+            mouseout.call(oLis[k])
+        }
+        window.onscroll = null
+        var cT = document.documentElement.scrollTop || document.body.scrollTop;
+        var deration = 1000
+        var interval = 10
+        var step = (cT / deration) * interval
+        var timer = window.setInterval(function () {
+            if (cT <= 0) {
+                window.onscroll = init
+                window.clearInterval(timer)
+                return
+            }
+            cT -= step
+            document.documentElement.scrollTop = cT
+            document.body.scrollTop = cT
+        }, 10)
+    }
+</script>
+</body>
+</html>

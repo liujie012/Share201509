@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset = "utf-8">
+	<title>表格排序</title>
+	<style>
+		html, body, table, thead, tbody, tr, th, td, div {
+			margin: 0;
+			padding: 0;
+			font-size: 14px;
+			font-family: "微软雅黑";
+		}
+		.box {
+			width: 400px;
+			margin: 20px auto;
+			border: 1px solid #999;
+			box-shadow: 2px 2px 2px 2px #999;
+		}
+		#tab thead tr th {
+			width: 100px;
+			height: 30px;
+			line-height: 30px;
+			background-color: lightgreen;
+		}
+		#tab thead tr th.cursor {
+			cursor: pointer;
+		}
+		#tab tbody tr {
+			height: 30px;
+			line-height: 30px;
+			color: #999;
+			text-align: center;
+		}
+		#tab tbody tr.bg0 {
+			background-color: "";
+		}
+		#tab tbody tr.bg1 {
+			background-color: lightblue;
+		}
+		#tab tbody tr:hover {
+			color: white;
+			font-weight: bold;
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+<div class="box">
+	<table id="tab" cellpadding="0" cellspacing="0">
+		<thead>
+			<tr>
+				<th class="cursor">姓名</th>
+				<th class="cursor">年龄</th>
+				<th class="cursor">分数</th>
+				<th class="cursor">性别</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- 内容区 -->
+		</tbody>
+	</table>
+</div>
+</body>
+<script type="text/javascript" src="./Str.js"></script>
+<script type="text/javascript" src="./utils.js"></script>
+<script type="text/javascript" src="./biaogepaixu.js"></script>
+</html>

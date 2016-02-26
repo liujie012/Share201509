@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul{
+          position: fixed;
+            left: 30px;
+            top: 100px;
+            z-index: 1;
+        }
+        ul li {
+            list-style: none;
+            line-height: 35px;
+            height: 35px;
+            cursor: pointer;
+            width: 30px;
+            background-color: white;
+            border-bottom: 1px solid #ccc;
+            text-align: center;
+
+        }
+        ul li:hover{
+            background-color: red;
+        }
+        #tab div img{
+            width: 1200px;
+            height: 665px;
+        }
+        #tab .right{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <ul>
+        <li>1F</li>
+        <li>2F</li>
+        <li>3F</li>
+        <li>4F</li>
+        <li>5F</li>
+    </ul>
+    <!--<div><img src="" alt=""/></div>-->
+</div>
+<script type="text/javascript" src="js/json.js"></script>
+<!--<script type="text/javascript" src="js/index.js"></script>-->
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    var oTab=document.getElementById("tab");
+    var oLis=oTab.getElementsByTagName("li");
+    var imgList=oTab.getElementsByTagName("img");
+
+
+
+    function bindData(){
+        var str="";
+        for(var i=0;i<dataAry.length;i++){
+            var cur=dataAry[i];
+            str += "<div class='right'><img src='img/default.jpg' trueImg='" + cur["logo"] + "'/></div>";
+        }
+        oTab.innerHTML+=str;
+    }
+    bindData();
+
+    for (var i = 0; i < oLis.length; i++) {
+        (function (i) {
+            //    var winT = document.documentElement.clientHeight || document.body.clientHeight;
+            oLis[i].onclick = function () {
+                document.documentElement.scrollTop =670*i;
+                document.body.scrollTop =670*i;
+
+            };
+        }(i))
+    }
+
+    function init(){
+
+        for(var i=0;i<imgList.length;i++){
+            ~function(i){
+                var curImg=imgList[i];
+                if(curImg.isLoad)return;
+                var curImgT = utils.offset(curImg).top + curImg.offsetHeight;
+                var winT=(document.documentElement.clientHeight||document.body.clientHeight)+
+                        (document.documentElement.scrollTop||document.body.scrollTop);
+                if(curImgT<winT){
+                    var oImg=new Image;
+                    oImg.src=curImg.getAttribute("trueImg");
+                    oImg.onload=function(){
+                        curImg.src=this.src;
+                        curImg.isLoad=true;
+                    }
+                }
+
+            }(i);
+        }
+    }
+
+    window.setTimeout(init, 100);
+    window.onscroll = init;
+
+
+</script>
+
+</body>
+</html>

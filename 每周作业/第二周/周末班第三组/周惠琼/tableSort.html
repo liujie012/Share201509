@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<style>
+@charset "utf-8";
+body, div, table, thead, tbody, tr, th, td {
+    margin: 0;
+    padding: 0;
+    font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+    font-size: 14px;
+    -webkit-user-select: none;
+}
+
+.box {
+    margin: 10px auto;
+    padding: 20px;
+    width: 400px;
+    border: 1px solid #008000;
+
+    /*以下都是CSS3中新增加的样式属性:在IE6~8下不兼容*/
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px 0 #999;
+}
+
+#tab thead tr, #tab tbody tr {
+    height: 35px;
+    line-height: 35px;
+}
+
+#tab thead tr {
+    background: #008000;
+    color: #fff;
+}
+
+#tab tbody tr.bg {
+    background: #ffe470;
+}
+
+#tab thead tr th, #tab tbody tr td {
+    width: 100px;
+    text-align: center;
+}
+
+#tab thead tr th.cursor {
+    cursor: pointer;
+}
+.bg1{ background:#ccc;}
+</style>
+<body>
+	<!--在一个table中,我们的thead只能有一个,而tbody可以有多个-->
+<div class="box">
+    <table id="tab" cellspacing="0" cellpadding="0">
+        <thead>
+        <tr>
+            <!--想让谁排序就给谁加class="cursor"-->
+            <th class="cursor">姓名</th>
+            <th class="cursor">年龄</th>
+            <th class="cursor">武力</th>
+            <th>性别</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--实现奇数偶数行变色,只需让偶数行的class='bg'-->
+        <!--<tr>
+            <td>令狐冲</td>
+            <td>24</td>
+            <td>98</td>
+            <td>男</td>
+        </tr>
+        <tr class="bg">
+            <td>令狐冲</td>
+            <td>24</td>
+            <td>98</td>
+            <td>男</td>
+        </tr>-->
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	var jsonAry = [
+		{"name": "令狐冲", "age": 24, "score": 98, "sex": 0},
+		{"name": "任盈盈", "age": 22, "score": 80, "sex": 1},
+		{"name": "岳灵珊", "age": 21, "score": 88, "sex": 1},
+		{"name": "岳不群", "age": 58, "score": 96, "sex": 0},
+		{"name": "林平之", "age": 23, "score": 90, "sex": 0},
+		{"name": "东方不败", "age": 30, "score": 100, "sex": 1}
+	];
+	var table = document.getElementById('tab'),
+		thead = table.tHead,
+		tbody = table.tBodies[0],
+		oRows = tbody.rows,//tr
+		oths = thead.rows[0].cells;
+	var tableSort = {
+			init: function(){
+				var that = this;
+				that.loadDate();
+				for(var i=0; i<oths.length ; i++){
+					oths[i].index = i;
+					oths[i].onclick = function(){
+						if(this.className != 'cursor') return;
+						that.index =  this.index;
+						that.obj = this;
+						that.obj.type = that.obj.type ? that.obj.type * (-1) : 1;
+						that.sortFun();
+					};
+				};
+			},
+			loadDate: function(){
+				var that = this,
+					html = '';
+				for(var i=0; i<jsonAry.length; i++){
+					var sex = jsonAry[i].sex == 0 ? '男': '女';
+					html += '<tr class=bg'+i%2+'><td>'+jsonAry[i].name+'</td><td>'+jsonAry[i].age+'</td><td>'+jsonAry[i].score+'</td><td>'+sex+'</td></tr>';
+				};
+				tbody.innerHTML = html;
+			},
+			sortFun: function(){//函数排序localeCompare
+				var that = this;
+				that.arrayRows = that.arrayDom();
+				that.arrayRows.sort(function(cur,next){
+					cur = cur.cells[that.index].innerHTML,
+					next = next.cells[that.index].innerHTML;
+					if(isNaN(cur)|| isNaN(next)){
+						return cur.localeCompare(next) * that.obj.type;
+					}else{
+						return (cur - next) * that.obj.type;
+					};
+				});
+				var htmlBox = document.createDocumentFragment();//创建文档碎片
+				for(var i=0; i<that.arrayRows.length; i++){
+					htmlBox.appendChild(that.arrayRows[i]);
+				};
+				tbody.appendChild(htmlBox);
+				that.colorBg();
+			},
+			arrayDom: function(){
+				try{
+					return Array.prototype.slice.call(oRows);
+				}catch(e){
+				};
+			},
+			colorBg:function(){//隔行变色
+				for(var j=0; j<oRows.length; j++){
+					oRows[j].className = 'bg'+ j%2;
+				};
+			}
+		};	
+	tableSort.init();
+</script>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+/*
+*    1、区别是clientWidth是内容的宽度+左右的padding值
+ *       offsetWidth是clientWidth+左右的border
+ *       在IE8中他们的值是一样
+*
+*     2、offsetLeft是左偏移，与父级元素有距离时，从盒子的左边框开始计算
+*
+*     3、offsetParent是父级参照物，当用position定位时
+*
+*     4、document.documentElement.clientWidth||document.body.clientWidth       document.documentElement.clientHeight||document.body.clientHeight
+*
+*      5、var curW=(document.documentElement.clientWidth||document.body.clientWidth)/2
+*        var curH=(document.documentElement.clientHeight||document.body.clientHeight)/2
+*
+*      6、function offset(curEle) {
+ var t = curEle.offsetTop, l = curEle.offsetLeft, p = curEle.offsetParent;
+ while (p) {
+ if (navigator.userAgent.indexOf("MSIE 8.0") === -1) {
+ t += p.clientTop;
+ l += p.clientLeft;
+ }
+ t += p.offsetTop;
+ l += p.offsetLeft;
+ p = p.offsetParent;
+ }
+ return {top: t, left: l};
+ };
+
+
+    7、window.navigator.userAgent
+
+    8、var val=oDiv.innerHTML;
+ window.setInterval(function(){
+ var oldL = oDiv.scrollLeft;
+ oDiv.scrollLeft+=1;
+
+ var newL=oDiv.scrollLeft;
+ if(oldL===newL){
+ oDiv.innerHTML+=val;
+ }
+
+ },10);
+
+
+   9、
+
+
+   10、是Number类型的，setTimeout是执行一次就结束了
+ setInterval是能够一直执行的
+*
+*
+* */
+
+
+
+
+
+</script>
+
+</body>
+</html>

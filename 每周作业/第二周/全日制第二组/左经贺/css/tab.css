@@ -1,0 +1,43 @@
+body,div,table,thead,tbody,tr,th,td{
+    margin: 0;
+    padding: 0;
+    font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+    font-size: 14px;
+    -webkit-user-select: none;
+}
+.box{
+    margin: 10px auto;
+    padding: 20px;
+    width: 400px;
+    border: 1px solid red;
+    border-radius: 10px;
+
+}
+#tab{
+
+}
+#tab thead tr{
+    height: 35px;
+    line-height: 35px;
+    background: #990099;
+    color: #fff;
+}
+#tab thead tr th{
+    width: 100px;
+}
+#tab thead tr th.cursor{
+    cursor: pointer;
+}
+#tab tbody tr{
+    height: 30px;
+    line-height: 30px;
+}
+#tab tbody tr td{
+    text-align: center;
+}
+#tab tbody tr.bg0{
+
+}
+#tab tbody tr.bg1{
+    background: #3c3c3c;
+}

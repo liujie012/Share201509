@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 微软雅黑;
+    font-size: 16px;
+    -webkit-user-select: none;
+}
+
+.box {
+    margin: 10px auto;
+    padding: 20px;
+    width: 400px;
+    border: 1px solid paleturquoise;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px 0 indigo;
+}
+#tab thead tr {
+    height: 35px;
+    line-height: 35px;
+    background:orangered;
+    color: blue;
+}
+
+#tab thead tr th {
+    width: 100px;
+}
+
+#tab thead tr th.cursor {
+    cursor: pointer;
+}
+
+#tab tbody tr {
+    height: 30px;
+    line-height: 30px;
+}
+
+#tab tbody tr td {
+    text-align: center;
+}
+
+#tab tbody tr.bg0 {
+
+}
+
+#tab tbody tr.bg1 {
+    background:yellow;
+}
+

@@ -1,0 +1,37 @@
+body,div,table,thead,tbody,tr,th,td{
+    margin: 0;
+    padding: 0;
+    font-family: cursive;
+    font-size: 15px;
+    list-style: none;
+}
+.box{
+    margin: 10px auto;
+    width: 400px;
+    border: 1px solid darkgray;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px 0 #999;
+    background: antiquewhite;
+}
+#tab thead tr th{
+    width: 100px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background: -webkit-linear-gradient(top left,tomato,antiquewhite,tan);
+    border-radius: 10px;
+}
+#tab thead tr th.cursor{
+    cursor: pointer;
+}
+#tab tbody tr td{
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+#tab tbody tr.bg0{
+
+}
+#tab tbody tr.bg1{
+    background: silver;
+}

@@ -1,0 +1,33 @@
+body, div, span {
+    margin: 0;
+    padding: 0;
+}
+
+#outer {
+    position: relative;
+    margin: 20px auto;
+    padding: 0 5px 0 35px;
+    width: 900px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px dashed #999;
+    border-radius: 5px;
+}
+
+#outer span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background: #999;
+}
+
+#inner {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#slide1, #slide2 {
+    display: inline;
+}

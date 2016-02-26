@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #div1 {
+            position: relative;
+            margin: 30px auto;
+            width: 900px;
+            height: 30px;
+            border: 1px solid green;
+            line-height: 30px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    要得到你必须要付出,要付出你还需要学会坚持,如果你真的觉得很难,那你就放弃,但是一但放弃就不要在抱怨,我觉得人生就是这样,世界真的是平衡的,每个人都是通过自己的努力,去决定自己生活的样子--何炅;
+</div>
+</body>
+<script type="text/javascript">
+    var oDiv1 = document.getElementById("div1");
+    var innerval=oDiv1.innerHTML;
+        window.setInterval(function () {
+//            oldL = oDiv1.scrollLeft;
+//            nowL = oldL + 1;
+//            oDiv1.scrollLeft = nowL;
+            oldL=oDiv1.scrollLeft;
+            oDiv1.scrollLeft++;
+            nowL=oDiv1.scrollLeft;
+            if (nowL === oldL) {
+                oDiv1.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;" + innerval;
+                console.log("haha");
+            }
+        }, 10)
+
+</script>
+</html>

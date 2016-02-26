@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="Css/reset.css"/>
+    <style type="text/css">
+        body {
+            font-family: "Microsoft Yahei";
+        }
+
+        .right {
+            float: right;
+            width: 80%;
+            background: -webkit-linear-gradient(top left, #008000, #08BECE, #990099, #ff3333, #ffe470);
+            background: -moz-linear-gradient(top left, #008000, #08BECE, #990099, #ff3333, #ffe470);
+            background: -ms-linear-gradient(top left, #008000, #08BECE, #990099, #ff3333, #ffe470);
+            background: -o-linear-gradient(top left, #008000, #08BECE, #990099, #ff3333, #ffe470);
+            background: linear-gradient(top left, #008000, #08BECE, #990099, #ff3333, #ffe470);
+        }
+
+        .right div {
+            height: 500px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        #div7 {
+            height: 500px;
+            background-color: #fff;
+        }
+
+        .float {
+            display: none;
+            position: fixed;
+            left: 10%;
+            top: 50%;
+            margin-top: -100px;
+            margin-left: -21px;
+            width: 42px;
+            font-size: 12px;
+        }
+
+        .float li {
+            text-align: center;
+            padding: 7px 0;
+            border-bottom: 1px dashed #cccccc;
+            cursor: pointer;
+        }
+
+        .float li:hover {
+            background-color: red;
+            color: #fff;
+        }
+
+        .float li.active {
+            color: blue;
+        }
+
+        .banner {
+            width: 80%;
+            float: right;
+        }
+
+        .banner img {
+            width: 100%;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="banner">
+    <img src="img/yang.jpg" alt=""/>
+</div>
+<div class="clearfix">
+    <div id="content" class="right">
+        <div id="div1">一只羊</div>
+        <div id="div2">两只羊</div>
+        <div id="div3">三只羊</div>
+        <div id="div4">四只羊</div>
+        <div id="div5">美腻羊</div>
+        <div id="div6">可爱羊</div>
+    </div>
+</div>
+
+<ul id="nav" class="float">
+    <li>一只羊</li>
+    <li>两只羊</li>
+    <li>三只羊</li>
+    <li>四只羊</li>
+    <li>美腻羊</li>
+    <li>可爱羊</li>
+</ul>
+<div id="div7"></div>
+
+<script type="text/javascript" charset="utf-8" src="Js/utils.js"></script>
+<script type="text/javascript">
+    var oNav = document.getElementById("nav");
+    var oLis = oNav.getElementsByTagName("li");
+    var oDIvs = document.getElementById("content").getElementsByTagName("div");
+    var timer = null;
+    for (var i = 0; i < oLis.length; i++) {
+        oLis[i].flag = 1;
+        ~function (n) {
+            oLis[n].onclick = function () {
+                SlideRead(n);
+            };
+        }(i);
+    }
+
+    function SlideRead(n) {
+        for (var i = 0; i < oLis.length; i++) {
+            oLis[i].className = i != n ? "" : "active";
+        }
+        window.clearInterval(timer);
+        var num = utils.offset(oDIvs[n]).top;
+        SlideDo(num, 500, 10);
+    }
+
+    function SlideDo(num, duration, interval) {
+        var dmtScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var step = (num - dmtScrollTop) / (duration / interval);
+        timer = window.setInterval(function () {
+            if (Math.round(dmtScrollTop) === num) {
+                window.clearInterval(timer);
+                return;
+            }
+            dmtScrollTop += step;
+            document.documentElement.scrollTop = dmtScrollTop;
+            document.body.scrollTop = dmtScrollTop;
+        }, interval);
+    }
+
+    function floatMove() {
+        var dmtScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var dmtClientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+        var lastDivT = utils.offset(oDIvs[oDIvs.length - 1]).top + oDIvs[oDIvs.length - 1].offsetHeight * 0.5;
+        if (dmtScrollTop + dmtClientHeight * 0.5 >= utils.offset(oDIvs[0]).top && dmtScrollTop < lastDivT) {
+            oNav.style.display = "block";
+        }
+        else {
+            oNav.style.display = "none";
+        }
+        //每个div都有offsetTop
+        //浏览器一屏的高度+滚动条的卷去的高度
+        for (var i = 0; i < oDIvs.length; i++) {
+            if (dmtScrollTop + dmtClientHeight / 2 > utils.offset(oDIvs[i]).top) {
+                for (var j = 0; j < oLis.length; j++) {
+                    oLis[j].className = "";
+                }
+                oLis[i].className = "active";
+            }
+        }
+    }
+    window.onscroll = floatMove;
+
+</script>
+
+
+</body>
+</html>

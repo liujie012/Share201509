@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>移动端webApp列表</title>
+    <style type="text/css">
+        body, div, ul, li, img, h2, p {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        img {
+            display: block;
+            border: none;
+        }
+
+        #ul1 {
+            padding: 10px;
+        }
+
+        #ul1 li {
+            position: relative;
+            padding: 10px 0;
+            height: 60px;
+            border-bottom: 1px dashed #008000;
+        }
+
+        #ul1 li.bg {
+            background: #ccc;
+        }
+
+        #ul1 li .left {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 75px;
+            height: 60px;
+        }
+
+        #ul1 li .left img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #ul1 li .right {
+            margin-left: 80px;
+        }
+
+        #ul1 li .right h2 {
+            line-height: 20px;
+
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        #ul1 li .right p {
+            font-size: 12px;
+            color: #999;
+            line-height: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<ul id="ul1">
+
+</ul>
+</body>
+</html>
+<script type="text/javascript" charset="UTF-8" src="json.js"></script>
+<script type="text/javascript" charset="UTF-8" src="utils.js"></script>
+<script type="text/javascript" charset="UTF-8">
+    var oUl = document.getElementById("ul1"), imgList = oUl.getElementsByTagName("img"), oLis = oUl.getElementsByTagName("li");
+    function bindData() {
+        var str = "";
+        for (var i = 0; i < dataAry.length; i++) {
+            var cur = dataAry[i];
+            str += "<li>";
+            str += "<div class='left'><img src='default.jpg' trueImg='" + cur["logo"] + "'/></div>";
+            str += "<div class='right'>";
+            str += "<h2>" + cur["title"] + "</h2>";
+            str += "<p>" + cur["desc"] + "</p>";
+            str += "</div>";
+            str += "</li>";
+        }
+        oUl.innerHTML = str;
+    }
+    bindData();
+    function changeBg() {
+        for (var i = 0; i < oLis.length; i++) {
+            oLis[i].onmouseover = function () {
+                this.className = "bg";
+            };
+            oLis[i].onmouseout = function () {
+                this.className = " ";
+            }
+        }
+    }
+    changeBg();
+    function init() {
+        for (var i = 0; i < imgList.length; i++) {
+            !function (i) {
+                var curImg = imgList[i];
+                if (curImg.isload) return;
+                var curImgT = utils.offset(curImg).top + curImg.offsetHeight;
+                var winT = (document.documentElement.clientHeight || document.body.clientHeight) + (document.documentElement.scrollTop || document.body.scrollTop);
+                console.log(curImgT,winT);
+                if (curImgT < winT) {
+                    var oImg = new Image;
+                    oImg.src = curImg.getAttribute("trueImg");
+                    oImg.onload = function () {
+                        curImg.src = this.src;
+                        curImg.isload = true;
+                    }
+                }
+            }(i);
+        }
+    }
+    init();
+    window.onscroll=init;
+</script>
+
+

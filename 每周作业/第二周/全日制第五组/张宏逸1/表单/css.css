@@ -1,0 +1,50 @@
+@charset "utf-8";
+body,div, thead,th,tr,td{
+    margin: 0;
+    padding: 0;
+    font-family: cursive;
+    font-size: 14px;
+    -webkit-user-select: none;
+}
+.box{
+    margin: 10px auto;
+    padding: 20px;
+    width: 400px;
+    border: 1px solid #008000;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #999;
+
+}
+#tab{
+
+}
+#tab thead tr{
+    height: 35px;
+    line-height: 35px;
+    background: saddlebrown;
+    color: #FFFFFF;
+
+}
+#tab thead tr th{
+    width: 100px;
+
+}
+#tab thead tr th.cursur{
+    cursor: pointer;
+
+}
+#tab tbody tr{
+    height: 30px;
+    line-height: 30px;
+
+}
+#tab tbody tr td{
+    text-align: center;
+
+}
+#tab tbody tr.bg0{
+
+}
+#tab tbody tr.bg1{
+    background: red;
+}

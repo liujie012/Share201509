@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+            list-style: none;
+            font-family: "微软雅黑";
+        }
+
+        html, body {
+            width: 100%;
+        }
+
+        .box {
+            width: 100%;
+            height: 7000px;
+        }
+
+        #ul1 {
+            display: none;
+            position: fixed;
+            top: 225px;
+            right: 1290px;
+            /*opacity:0.5;*/
+            /*filter:alpha(opacity=50);*/
+        }
+
+        #ul1 li {
+            width: 30px;
+            height: 26px;
+            line-height: 30px;
+            text-align: center;
+            border-bottom: 1px dashed #ddd;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+
+        #ul1 li.bg {
+            color: white;
+            background: #cc0000;
+        }
+
+        #ul1 li.color {
+            color: red;
+        }
+
+        #tab {
+            margin: 20px auto;
+            width: 1220px;
+            border: 1px solid green;
+        }
+
+        #tab div {
+            height: 600px;
+            font-size: 18px;
+            border: 1px solid #999999;
+        }
+
+        #tab img {
+            width: 100%;
+            height: 410px;
+            border: none;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul id="ul1">
+        <li>1F</li>
+        <li>2F</li>
+        <li>3F</li>
+        <li>4F</li>
+        <li>5F</li>
+        <li>6F</li>
+        <li>7F</li>
+        <li>8F</li>
+        <li>9F</li>
+        <li>10F</li>
+        <li>11F</li>
+    </ul>
+    <div id="tab">
+        <div style="background: yellow">服饰</div>
+        <div style="background: darkviolet">美妆</div>
+        <div style="background: blue">手机</div>
+        <div style="background: yellow">服务</div>
+        <div style="background: lightsalmon">数码</div>
+        <div style="background: red">运动</div>
+        <div style="background: royalblue">家电</div>
+        <div style="background: #BB3BD9">居家</div>
+        <div style="background: yellow">男装</div>
+        <div style="background: pink">母婴</div>
+        <div style="background: palegreen">食品</div>
+    </div>
+
+</div>
+<script charset="utf-8" type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    var oUl = document.getElementById("ul1"), oLis = oUl.getElementsByTagName("li");
+    var oTab = document.getElementById("tab"), oDivs = oTab.getElementsByTagName("div");
+    function showUl() {
+        var winT1 = utils.win("scrollTop") + utils.win("clientHeight");
+        var winT2 = utils.win("scrollTop");
+        var t1 = utils.offset(oDivs[0]).top;
+        var t2 = utils.offset(oDivs[oDivs.length - 1]).top + oDivs[oDivs.length - 1].offsetHeight;
+        oUl.style.display = (t1 >= winT1 || winT2 >= t2) ? "none" : " block";
+    }
+    showUl();
+    for (var i = 0; i < oLis.length; i++) {
+        var curLi = oLis[i];
+        curLi.index = i;
+        curLi.flag = false;
+        curLi.oldIn = curLi.innerHTML;
+        curLi.onmouseover = function () {
+            this.className = "bg";
+            this.innerHTML = oDivs[this.index].innerHTML;
+        };
+        curLi.onmouseout = function () {
+            if (this.flag === true) {
+                this.className = "color";
+                this.innerHTML = oDivs[this.index].innerHTML;
+            }
+            else {
+                this.className = "";
+                this.innerHTML = this.oldIn;
+            }
+        };
+        curLi.onclick = function () {
+            window.clearInterval(curLi.timer);
+            if (this.className !== "color")
+            {    this.flag = true;
+                    for (var k = 0; k < oLis.length; k++) {
+                       if (k !== this.index) {
+                        oLis[k].className = "";
+                        oLis[k].innerHTML = oLis[k].oldIn;
+                        oLis[k].flag = false;
+                    }
+                }
+            }
+            var divT = utils.offset(oDivs[this.index]).top;
+            var winT = utils.win("scrollTop");
+            var dis = divT - winT;
+            var interval = 10, step = (dis / 500) * interval;
+            curLi.timer = window.setInterval(function () {
+                window.onscroll = null;
+                if (Math.abs(dis) < Math.abs(step)) {
+                    window.clearInterval(curLi.timer);
+                    utils.win("scrollTop", divT);
+                    window.onscroll = scrollMove;
+                    return;
+                }
+                document.documentElement.scrollTop += step;
+                document.body.scrollTop += step;
+                dis = divT - utils.win("scrollTop");
+            }, interval);
+        };
+    }
+
+    function scrollMove() {
+        for (var i = 0; i < oDivs.length; i++) {
+            var curDiv = oDivs[i];
+            ~(function (i) {
+                var winT = utils.win("scrollTop") + utils.win("clientHeight");
+                var curDivT = (i === 0) ? (utils.offset(curDiv).top) : (utils.offset(curDiv).top + curDiv.offsetHeight / 2);
+                if (winT >= curDivT) {
+                    oLis[i].innerHTML = curDiv.innerHTML;
+                    oLis[i].className = "color";
+                    oLis[i].flag = true;
+                    for (var k = 0; k < oLis.length; k++) {
+                        if (k !== i) {
+                            oLis[k].className = "";
+                            oLis[k].innerHTML = oLis[k].oldIn;
+                            oLis[k].flag = false;
+                        }
+                    }
+                }
+            })(i);
+        }
+        showUl();
+    }
+    window.onscroll = scrollMove;
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/mystyle.css"/>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <style>
+        *{ margin: 0;  padding: 0; border: 0;list-style: none;}
+        .left{ position:fixed; left: 10px; top: 80px;}
+        .left li{ height: 30px; line-height: 30px; cursor: pointer; width: 35px; text-align: center;}
+        .left li:hover{ background: red;}
+        .right{ margin: auto 50px;}
+        .right img{ width: 100%;}
+        li:hover {
+            background: #C81623;
+            color: #FFFFFF;
+        }
+        .select{
+            color: #C81623;
+        }
+        .hover{
+            color: #C81623;
+        }
+    </style>
+</head>
+<body>
+<div class="left">
+    <ul id="ul1">
+        <li info="服饰" index="1F">1F</li>
+        <li info="美妆" index="2F">2F</li>
+        <li info="手机" index="3F">3F</li>
+        <li info="家电" index="4F">4F</li>
+        <li info="数码" index="5F">5F</li>
+        <li info="运动" index="6F">6F</li>
+        <li info="居家" index="7F">7F</li>
+        <li info="母婴" index="8F">8F</li>
+        <li info="食品" index="9F">9F</li>
+        <li info="图书" index="10F">10F</li>
+        <li info="服务" index="11F">11F</li>
+    </ul>
+</div>
+<div class="right">
+    <div class="img"><img src="img/img11.png" alt=""/></div>
+    <div class="img"><img src="img/img12.png" alt=""/></div>
+    <div class="img"><img src="img/img13.png" alt=""/></div>
+    <div class="img"><img src="img/img14.png" alt=""/></div>
+    <div class="img"><img src="img/img15.png" alt=""/></div>
+    <div class="img"><img src="img/img16.png" alt=""/></div>
+    <div class="img"><img src="img/img17.png" alt=""/></div>
+    <div class="img"><img src="img/img18.png" alt=""/></div>
+    <div class="img"><img src="img/img19.png" alt=""/></div>
+    <div class="img"><img src="img/img20.png" alt=""/></div>
+    <div class="img"><img src="img/img21.png" alt=""/></div>
+</div>
+<script type="text/javascript">
+    var oUl=document.getElementById("ul1");
+    var oLis=oUl.getElementsByTagName("li");
+    var imgList=document.getElementsByTagName("img");
+    ~function menu() {
+
+        for (var i = 0; i < oLis.length; i++) {
+            (function (i) {
+                var cur = oLis[i];
+                cur.onclick = function () {
+
+                    var targetT = utils.offSet(imgList[i]).top;
+                    var curScroll = document.documentElement.scrollTop || document.body.scrollTop;
+                    var step = ((targetT - curScroll) / 500) * 10;
+                    var direction = (targetT - curScroll) > 0 ? 1 : -1;
+                    var timer = window.setInterval(function () {
+                        if ((curScroll - targetT) * direction >= 0) {
+                            document.documentElement.scrollTop = targetT;
+                            document.body.scrollTop = targetT;
+                            clearInterval(timer);
+                            return;
+                        }
+                        curScroll += step;
+                        document.documentElement.scrollTop = curScroll;
+                        document.body.scrollTop = curScroll;
+                    }, 10);
+                    this.innerHTML = this.getAttribute("info");
+                    this.className = "select";
+                    var siblings=utils.siblings(this);
+                    utils.removeClass(siblings,"select");
+
+                };
+                cur.onmouseover = function () {
+                    if (this.className === "select") {
+                        return;
+                    }
+                    this.className = "hover";
+                    this.innerHTML = cur.getAttribute("info");
+                };
+                cur.onmouseout = function () {
+                    if (this.className === "select") {
+                        return;
+                    }
+                    this.className = "";
+                    this.innerHTML = cur.getAttribute("index");
+                }
+            })(i);
+        }
+    }();
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+body, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+    font-size: 10px;
+}
+
+#tab {
+    position: fixed;
+    left: 45px;
+    top: 160px;
+    width: 28px;
+    background-color: white;
+    display: none;
+}
+
+#tab li {
+    text-align: center;
+    padding: 5px 2px;
+    border-bottom: 1px dashed #ccc;
+    -webkit-user-select: none
+}
+
+#tab li.onclick {
+    color: firebrick;
+}
+
+#tab li.bg {
+    background-color: palevioletred;
+}
+
+div {
+    width: auto;
+    width: 1100px;
+    height: 610px;
+    margin: 30px 60px 0px 74px;
+}
+
+div img {
+    width: 1110px;
+    height: 610px;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跑马灯</title>
+    <link type="text/css" rel="stylesheet" href="index.css"/>
+</head>
+<body>
+<div id="outer">
+    <span></span>
+    <div id="inner">
+        <div id="slide1">
+            &nbsp;&nbsp;新版经理人论坛上线了：亲爱的用户，为了更好的提供服务，神州英才推出了全新经理人论坛平台。从即日起面向网站所有的会员朋友们开放公测！上线的社区平台，有全新的读版、读帖页样式，增添了更多的交互功能，关注用户需求和使用感受。
+        </div>
+        <div id="slide2"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var oDiv = document.getElementById("inner");
+    var slide1 = document.getElementById("slide1");
+    var slide2 = document.getElementById("slide2");
+    slide2.innerHTML = slide1.innerHTML;
+    var timer = window.setInterval(init, 20);
+
+    function init(){
+        if (oDiv.scrollLeft >= slide1.offsetWidth) {
+            oDiv.scrollLeft = 0;
+        } else {
+            oDiv.scrollLeft++;
+        }
+    }
+    oDiv.onmouseover = function(){
+        window.clearInterval(timer);
+    }
+    oDiv.onmouseout = function(){
+        timer = window.setInterval(init, 20);
+    }
+</script>
+</body>
+</html>

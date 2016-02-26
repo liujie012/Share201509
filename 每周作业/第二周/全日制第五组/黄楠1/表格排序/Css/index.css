@@ -1,0 +1,52 @@
+
+body
+{
+    font-family: "Microsoft Yahei";
+    font-size: 14px;
+
+}
+#box
+{
+    margin: 20px auto;
+    padding:15px;
+    border: 1px solid #08BECE;
+    border-radius: 8px;
+    width: 416px;
+    box-shadow: 3px 3px 10px 0 #999;
+    
+}
+#box table
+{
+    border-spacing: 1px;
+    border-collapse: inherit;
+}
+.box th
+{
+    width: 75px;
+    height: 35px;
+    line-height: 35px;
+    background-color: #EFDD9C;
+    margin: 0 1px;
+}
+.box td
+{
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+}
+.cur
+{
+    cursor: pointer;
+}
+.box .house-name
+{
+    width: 110px;
+}
+.tr0 td
+{
+    background: #9CD8F0;
+}
+.tr1 td
+{
+    background: #9CAEF0;
+}

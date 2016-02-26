@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #elevator{
+          position: fixed;
+            top:260px;
+        }
+        #elevator ul{
+            width:30px;
+            display: none;
+        }
+        #elevator ul li{
+            list-style: none;
+            float: left;
+            border-bottom:1px solid #CCCCCC;
+            cursor:pointer;
+            padding:10px;
+        }
+        #elevator li>a{
+            text-decoration: none;
+        }
+        #elevator li>.next{
+            display: none;
+        }
+        .content{
+            width:1200px;
+            margin:0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="content" id="content">
+    <div >
+        <img src="img/QQ截图20160126145651.png" alt=""/>
+    </div>
+    <div >
+        <img src="img/个户美妆.png" alt=""/>
+    </div>
+    <div >
+        <img src="img/家用电器.png" alt=""/>
+    </div>
+    <div >
+        <img src="img/手机通讯.png" alt=""/>
+    </div>
+    <div >
+        <img src="img/服饰.png" alt=""/>
+    </div>
+    <div >
+        <img src="img/电脑扫码.png" alt=""/>
+    </div>
+</div>
+  <div id="elevator">
+      <ul id="ul">
+          <li class="handler">
+              1F
+          </li>
+          <li class="handler">
+              2F
+          </li>
+          <li class="handler">
+              3F
+          </li>
+          <li class="handler">
+             4F
+          </li>
+          <li class="handler">
+             5F
+          </li>
+
+      </ul>
+  </div>
+<script src="js/utils.js"></script>
+<script>
+//    首先等大于第一屏的高度才开始进行显示，开始默认是不显示的，先写一个方法让其显示
+   var oUl=document.getElementById("ul");
+//      找到所有的孩子li
+   var oLis=utils.children(oUl,"li");
+     for(var i=0;i<oLis.length;i++){
+         oLis[i].onclick=(function(i){
+             return function(){
+                 changeHander(i);
+
+             }
+         })(i)
+     }
+//    点击哪个标签就到屏幕的什么位置，就是每一个块的高度是不相同的;点击第一块的时候高度是第一个f1距离顶部的
+//    点击的是哪个li获取index,然后再找到是哪个div ,并且让其div的顶部距离为0，就实现了次功能
+      function changeHander(nIndex){
+         var content=document.getElementById("content");
+          var oDivs=utils.children(content,"div");
+          var curDiv=oDivs[nIndex+1];
+          var curOffset=utils.offset(curDiv);
+          console.log(curOffset.top);
+          utils.win("scrollTop",curOffset.top);
+      }
+//    高度，点击第二个返回到距离顶部的f2的高度，一次类推就是修改li想对应的任意一个div,并让这个div的高度设置为0
+//      让其显示如果大于一屏幕765px的高度就让其显示
+    function scrollMove(){
+        var curScroll=utils.win("scrollTop");
+        var H=756;
+        oUl.style.display=curScroll>756?"block":"none";
+    }
+    window.onscroll=scrollMove;
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 40px;
+        }
+
+        ul, li {
+            list-style: none;
+            font-size: 14px;
+        }
+
+        #ul1 {
+            position: fixed;
+            top: 40%;
+            left: 40px;
+        }
+
+        #ul1 li {
+            border-bottom: 1px solid black;
+            cursor: pointer;
+        }
+
+        #add {
+            margin: 20px 20px 20px 100px;
+            padding: 20px;
+            width: 1100px;
+            height: 600px;
+            line-height: 600px;
+            text-align: center;
+            border: 5px solid green;
+            background: lightgreen;
+        }
+
+        #tab {
+            margin: 20px 20px 20px 100px;
+            Width: 1150px;
+            border: 1px dashed red;
+        }
+
+        #tab div {
+            margin: 20px 0 20px 0;
+            padding: 20px;
+            width: 1100px;
+            height: 600px;
+            line-height: 600px;
+            text-align: center;
+            border: 5px solid green;
+            background: lightgreen;
+        }
+    </style>
+
+</head>
+<body>
+<ul id="ul1">
+    <li>1F</li>
+    <li>2F</li>
+    <li>3F</li>
+    <li>4F</li>
+    <li>5F</li>
+</ul>
+<div id="add">广告区域</div>
+<div id="tab">
+    <div>服饰</div>
+    <div>数码</div>
+    <div>家电</div>
+    <div>运动</div>
+    <div>食品</div>
+</div>
+<script type="text/javascript" src="js/utils.js"></script>
+<script>
+    var oUl = document.getElementById("ul1");
+    var oLis = oUl.getElementsByTagName("li");
+    var oTab = document.getElementById("tab");
+    var oDivs = oTab.getElementsByTagName("div");
+
+    ~function () {
+        function divOffset() {
+            var ary = [];
+            for (var i = 0; i < oDivs.length; i++) {
+                oDivs[i].offsetTop = utils.offset(oDivs[i]);
+                ary[ary.length] = oDivs[i].offsetTop;
+            }
+            return ary;
+        }
+
+        var ary = divOffset();
+
+
+        for (var i = 0; i < oLis.length; i++) {
+            oLis[i].onclick = function (i) {
+                scroll(i);
+            }(i);
+        }
+
+        function scroll(i) {
+            oDivs[i].scrollTop=utils.win("scrollTop", ary[i]);
+        }
+
+
+        //console.log(oDivs[i].offsetTop)
+
+
+    }()
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body,div,ul,li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            -webkit-user-select: none;
+        }
+        html,body{
+            width:100%;
+            height:4200px;
+            background:pink;
+            /*background:-webkit-linear-gradient(top left,red,orange,yellow,green,cyan,blue,purple);*/
+        }
+        #building{
+            display: block;
+            width:30px;
+            position: fixed;
+            top: 200px;
+            left: 40px;
+        }
+        #building .floor{
+            display: block;
+            width: 30px;
+            height: 30px;
+            border: 1px red solid;
+            text-align: center;
+            background-color: darkgray;
+            cursor: pointer;
+        }
+        .content{
+            width:100%;
+            height: 698px;
+            border: 1px solid green;
+        }
+    </style>
+</head>
+<body>
+    <ul id="building">
+        <li class="floor">1</li>
+        <li class="floor">2</li>
+        <li class="floor">3</li>
+        <li class="floor">4</li>
+        <li class="floor">5</li>
+        <li class="floor">6</li>
+    </ul>
+    <div class="content">第一层</div>
+    <div class="content">第二层</div>
+    <div class="content">第三层</div>
+    <div class="content">第四层</div>
+    <div class="content">第五层</div>
+    <div class="content">第六层</div>
+    <script type="text/javascript" charset="utf-8" src="utils.js"></script>
+<script type="text/javascript">
+    ~function (){
+        var oUl=document.getElementById("building");
+        var oLis=document.getElementsByTagName("li");
+        //检测是否正在移动（是否有滚动条在运动）
+        var timerSwitching=null;
+        for(var i=0;i<oLis.length;i++){
+            oLis[i].index=i;
+            oLis[i].onclick=function(){
+                if(timerSwitching){window.clearInterval(timerSwitching);}
+                timerSwitching=null;
+                var oEnd=this.index*700;
+                var oStart=utils.win("scrollTop");
+                var time=1000,interval=20;
+                var step=(oEnd-oStart)/time*interval;
+                var timer=window.setInterval(function(){
+                    var winT=utils.win("scrollTop");
+                    if(Math.abs(winT-oEnd)<=Math.abs(step)){
+                        utils.win("scrollTop",oEnd);
+                        window.clearInterval(timer);
+                        timerSwitching=null;
+                        return;
+                    }
+                    utils.win("scrollTop",winT+step);
+                },interval);
+                timerSwitching=timer;
+            }
+        }
+    }()
+</script>
+</body>
+</html>

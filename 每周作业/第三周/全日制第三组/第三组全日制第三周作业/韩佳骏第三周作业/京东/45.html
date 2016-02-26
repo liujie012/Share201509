@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+   div{
+       margin: auto;
+       width: 1000px;;
+       height: 500px;
+       line-height: 500px;
+       font-size: 50px;
+       color: #151110;
+       border: 3px solid chartreuse;
+       text-align: center;
+   }
+        #ul1{
+            position:fixed;
+            top: 200px;
+            left: 50px;
+            list-style: none;
+        }
+        #ul1 li{
+            height:30px;
+            line-height: 30px;
+            width: 20px;
+            border: 1px solid lightskyblue;
+            text-align: center;
+            background-color: #96a7d8;
+
+        }
+
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li>F1</li>
+    <li>F2</li>
+    <li>F3</li>
+    <li>F4</li>
+    <li>F5</li>
+</ul>
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<script type="text/javascript" src="utils.js"></script>
+<script type="text/javascript">
+    var oUl=document.getElementById("ul1"),oLis=oUl.getElementsByTagName("li"),oDivs=document.getElementsByTagName("div");
+          ary=[];
+        window.onload= function () {
+            for(var i=0;i<oDivs.length;i++){
+                var curDivT = utils.offset(oDivs[i]).top;
+                ary[ary.length]=curDivT;
+            }
+        };
+          for(var i=0;i<oLis.length;i++){
+              (function(i){
+                  var cur=oLis[i];
+                  cur.onclick= function () {
+                      var curT =document.documentElement.scrollTop||document.body.scrollTop;
+                      var DisT=curT-parseFloat(ary[i]);
+                       var step=(DisT/1000*10);
+                      var timer=null;
+                    if(DisT>0){
+                            timer = window.setInterval(function(){
+                            curT=document.documentElement.scrollTop;
+                            curT=  document.body.scrollTop;
+                            if(curT<=parseFloat(ary[i])){
+                                document.documentElement.scrollTop=ary[i];
+                                document.body.scrollTop=ary[i];
+                                window.clearInterval(timer);
+                            }
+                            curT-=step;
+                            document.documentElement.scrollTop =curT;
+                            document.body.scrollTop=curT;
+                        },10);
+                    }
+                      if(DisT<0){
+                          timer = window.setInterval(function(){
+                              curT=document.documentElement.scrollTop;
+                              curT=  document.body.scrollTop;
+                              if(curT>parseFloat(ary[i])){
+                                  document.documentElement.scrollTop=ary[i];
+                                  document.body.scrollTop=ary[i];
+                                  window.clearInterval(timer);
+                              }
+                              curT-=step;
+                              document.documentElement.scrollTop =curT;
+                              document.body.scrollTop=curT;
+                          },10);
+                      }
+
+
+                  }
+              })(i);
+          }
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

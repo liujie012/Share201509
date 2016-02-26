@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,div,ul,li,img {
+            margin: 0;
+            padding: 0;
+            border: 0;
+
+        }
+        ul,li{
+            list-style: none;
+        }
+
+        .left {
+            position: fixed;
+            left: 10px;
+            top: 80px;
+        }
+
+        .left li {
+            height: 50px;
+            line-height: 50px;
+            cursor: pointer;
+            width: 35px;
+            text-align: center;
+            border: 1px solid darkred;
+            text-shadow: #0dad51;
+
+        }
+
+        .left li:hover {
+            background: blue;
+            color: antiquewhite;
+        }
+
+        .right {
+            margin: auto 50px;
+        }
+
+        .right img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="left">
+    <ul id="ul1">
+        <li message="すごい" index="1F">1F</li>
+        <li message="すごい" index="2F">2F</li>
+        <li message="すごい" index="3F">3F</li>
+        <li message="すごい" index="4F">4F</li>
+        <li message="すごい" index="5F">5F</li>
+        <li message="すごい" index="6F">6F</li>
+        <li message="すごい" index="7F">7F</li>
+        <li message="すごい" index="8F">8F</li>
+        <li message="すごい" index="9F">9F</li>
+        <li message="すごい" index="10F">10F</li>
+
+    </ul>
+</div>
+<div class="right">
+    <div class="img"><img src="1.jpg"/></div>
+    <div class="img"><img src="2.jpg"/></div>
+    <div class="img"><img src="3.jpg"/></div>
+    <div class="img"><img src="4.jpg"/></div>
+    <div class="img"><img src="5.jpg"/></div>
+    <div class="img"><img src="6.jpg"/></div>
+    <div class="img"><img src="7.jpg"/></div>
+    <div class="img"><img src="8.jpg"/></div>
+    <div class="img"><img src="9.jpg"/></div>
+    <div class="img"><img src="10.jpg"/></div>
+
+</div>
+<script type="text/javascript" src="utils.js"></script>
+<script type="text/javascript">
+    var oUl=document.getElementById("ul1");
+    var oLis=oUl.getElementsByTagName("li");
+    var imgList=document.getElementsByTagName("img");
+    ~function menu() {
+
+        for (var i = 0; i < oLis.length; i++) {
+            (function (i) {
+                var cur = oLis[i];
+                cur.onclick = function () {
+
+                    var targetT = utils.offset(imgList[i]).top;
+                    var curScroll = document.documentElement.scrollTop || document.body.scrollTop;
+                    var step = ((targetT - curScroll) / 500) * 10;
+                    var direction = (targetT - curScroll) > 0 ? 1 : -1;
+                    var timer = window.setInterval(function () {
+                        if ((curScroll - targetT) * direction >= 0) {
+                            document.documentElement.scrollTop = targetT;
+                            document.body.scrollTop = targetT;
+                            clearInterval(timer);
+                            return;
+                        }
+                        curScroll += step;
+                        document.documentElement.scrollTop = curScroll;
+                        document.body.scrollTop = curScroll;
+                    }, 10);
+                    this.innerHTML = this.getAttribute("message");
+                    this.className = "select";
+                    var siblings=utils.siblings(this);
+
+                    utils.removeClass(this,"select");
+
+                };
+                cur.onmouseover = function () {
+                    if (this.className === "select") {
+                        return;
+                    }
+                    this.className = "hover";
+                    this.innerHTML = cur.getAttribute("message");
+                };
+                cur.onmouseout = function () {
+                    if (this.className === "select") {
+                        return;
+                    }
+                    this.className = "";
+                    this.innerHTML = cur.getAttribute("index");
+                }
+            })(i);
+        }
+    }();
+</script>
+</body>
+</html>

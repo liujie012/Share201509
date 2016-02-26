@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: \5FAE\8F6F\96C5\9ED1;
+            font-size: 14px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .photo {
+            position: absolute;
+            left: 50px;
+        }
+
+        #back {
+            display: none;
+            position: fixed;
+            right: 0px;
+            bottom: 30px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border: 1px solid #ccc;
+            background: #FFFFFF;
+            cursor: pointer;
+            /*border-radius: 50%; /!*当前的盒子是正方形会变为了一个圆*!/*/
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+        }
+
+        #list {
+            display: none;
+            position: fixed;
+            left: 10px;
+            bottom: 75%;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            cursor: pointer;
+            /*border-bottom: dashed;*/
+        }
+
+        #ul1 li {
+            font-size: 12px;
+            color: silver;
+            width: 26px;
+            height: 35px;
+            padding: 6px;
+            line-height: 35px;
+            border-bottom: 1px dashed #CCCCCC;
+            /*box-shadow:2px 2px 5px 0px salmon ;*/
+        }
+
+        #ul1 li:hover {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="photo">
+    <div class="aaa"><img src="img/首页.png"/></div>
+    <div class="aaa"><img src="img/新春.png"/></div>
+    <div class="aaa"><img src="img/出境.png"/></div>
+    <div class="aaa"><img src="img/出国.png"/></div>
+    <div class="aaa"><img src="img/周边.png"/></div>
+    <div class="aaa"><img src="img/主题.png"/></div>
+    <div class="aaa"><img src="img/自助.png"/></div>
+    <div class="aaa"><img src="img/攻略.png"/></div>
+    <div class="aaa"><img src="img/合作.png"/></div>
+</div>
+<div id="list">
+    <ul id="ul1">
+        <li class="lis">首页</li>
+        <li>新春</li>
+        <li>国内</li>
+        <li>出境</li>
+        <li>周边</li>
+        <li>主题</li>
+        <li>自助</li>
+        <li>攻略</li>
+        <li>合作</li>
+    </ul>
+</div>
+<div id="back">&gt;</div>
+
+<script type="text/javascript">
+    /*var photo = document.getElementsByClassName("photo");*/
+    var back = document.getElementById("back");
+    var list = document.getElementById("list");
+    var oLi = list.getElementsByTagName("li");
+    var oUl = document.getElementById("ul1") ;
+
+    function active() {
+        var curT = document.documentElement.scrollTop || document.body.scrollTop;
+        var winT = document.documentElement.clientHeight || document.body.clientHeight;
+        if (curT >= (winT / 2)) {
+            back.style.display = "block";
+        } else {
+            back.style.display = "none";
+        }
+        if (curT >= (winT * 0.5)) {
+            list.style.display = "block";
+            if(curT>0.75*winT){
+                for(var i = 0 ; i<oLi.length ; i++){
+                    var cur = oLi[i] ;
+                    cur.haha = i ;
+                    if(curT>=this.haha*winT*0.75){
+                        cur.style.background="green" ;
+                    }
+                }
+            }
+        } else {
+            list.style.display = "none";
+        }
+    }
+    window.onscroll = active;
+
+    /*function liActive(){
+            var curT = document.documentElement.scrollTop||document.body.scrollTop ;
+            var winT = document.documentElement.clientHeight || document.body.clientHeight;
+            for(var i = 0 ; i<oLi.length ; i++){
+                var cur = oLi[i] ;
+                alert(cur);
+                cur.haha = i ;
+                if(curT>=this.haha*winT*0.75){
+                    cur.style.background="green" ;
+                }
+            }
+        }
+        window.onscroll = liActive ;*/
+
+
+    back.onclick = function () {
+        this.style.display = "none" ;
+        window.onscroll = null ;
+        var sumTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var sumTime = 1000, avgTime = 10, step = (sumTop/sumTime)*avgTime;
+        var timer = window.setInterval(function(){
+            if(sumTop<=0){
+                window.clearInterval(timer) ;
+                window.onscroll = active ;
+                return ;
+            }
+            sumTop-=step ;
+            document.documentElement.scrollTop = sumTop ;
+            document.body.scrollTop = sumTop ;
+        },avgTime);
+    };
+
+    function listClick(){
+        for(var i = 0 ; i<oLi.length ; i++){
+            var cur = oLi[i] ;
+            cur.haha = i ;
+            cur.onclick =function(){
+                var _this = this.haha ;
+                var sumTop = document.documentElement.scrollTop||document.body.scrollTop;
+                var winT = document.documentElement.clientHeight||document.body.clientHeight ;
+                if(sumTop>=_this*winT*0.75){
+                    var timer = window.setInterval(function(){
+                        var step = document.documentElement.clientHeight||document.body.clientHeight ;
+                        if(sumTop<=_this*winT*0.75){
+                            clearInterval(timer) ;
+                            return ;
+                        }
+                        sumTop -=100;
+                        document.documentElement.scrollTop = sumTop ;
+                        document.body.scrollTop = sumTop ;
+                    },100);
+                }else{
+                    var timer = window.setInterval(function(){
+                        var step = document.documentElement.clientHeight||document.body.clientHeight ;
+                        if(sumTop>=_this*winT*0.75){
+                            clearInterval(timer) ;
+                            return ;
+                        }
+                        sumTop +=100;
+                        document.documentElement.scrollTop = sumTop ;
+                        document.body.scrollTop = sumTop ;
+                    },100);
+                }
+            }
+        }
+    }
+    listClick() ;
+</script>
+</body>
+</html>
