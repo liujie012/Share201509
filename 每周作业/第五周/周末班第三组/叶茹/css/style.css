@@ -1,0 +1,201 @@
+*{
+    margin:0;
+    padding:0;
+}
+html,button,input,select,textarea{
+    font-family:sans-serif;
+}
+html{
+    display:block;
+}
+body{
+    font: 14px / 1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei', 'Hiragino Sans GB', 'Heiti SC', 'WenQuanYi Micro Hei', sans-serif;
+    color: #333;
+    background-color: #fff;
+    min-width: 1226px;
+}
+.site-bn-bar{
+    width:100%;
+    height:60px;
+    background-color:#fd5900;
+}
+.container{
+    position: relative;
+    width:1226px;
+    height:60px;
+    margin:0 auto;
+
+}
+.bg{
+    background:url("../img/minote-20160215.jpg") no-repeat;
+}
+.site-bn-bar-link{
+    display:inline-block;
+    width:100%;
+    height:60px;
+    text-indent:-9999px;/*使文字不显示*/
+}
+.site-bn-bar-close{
+    position: absolute;
+    top:7px;
+    right:0;
+    font-size:28px;
+    width:46px;
+    height:46px;
+    line-height:44px;
+    text-align:center;
+    background-color: #f1410a;
+    color:#fff;
+    opacity:.6;
+    text-decoration: none;
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    /*CSS3这个属性可以使页面上的字体抗锯齿,使用后字体看起来会更清晰舒服。加上之后就顿时感觉页面小清晰了。*/
+    -webkit-text-stroke-width: 0.2px;
+    /*h1 {-webkit-text-stroke: 2px blue}
+另一个特性是，通过设定1px的透明边框，可以让文字变得平滑:
+h2 {-webkit-text-stroke: 1px transparent}
+创建红色镂空字体：*/
+}
+.site-topbar{
+    position:relative;
+    z-index:30;
+    font-size:12px;
+    width:100%;
+    background-color:#333;
+    color:#b0b0b0;
+    height:40px;
+}
+ .topbar-nav{
+     float:left;
+}
+ .topbar-nav a{
+     color:#ccc;
+     height:40px;
+     line-height:40px;
+     text-decoration:none;
+     padding:5px;
+ }
+ .site-topbar .sep{
+     margin:0.1em;
+     color:#424242;
+ }
+ .sep{
+     font-family:sans-serif;
+ }
+ .topbar-info {
+     float: right;
+     height: 40px;
+     line-height: 40px;
+     text-decoration: none;
+ }
+ .topbar-info a{
+     color:#ccc;
+     text-decoration:none;
+ }
+ .topbar-info a:hover{
+     color:white;
+ }
+ .topbar-cart{
+     float:right;
+     width:120px;
+     margin-left:15px;
+
+ }
+ .iconfot{
+     font-family: "iconfont" !important;
+ }
+ .site-topbar .cart-mini{
+     position:relative;
+     display:inline-block;
+     height:40px;
+     line-height:40px;
+     text-align:center;
+     width:120px;
+     color:#b0b0b0;
+     background:#424242;
+ }
+ .site-topbar .cart-menu{
+     position: absolute;
+     right:0;
+     top:40px;
+     z-index:31;
+     width:316px;
+     padding:15px 0 0;
+     color:#424242;
+     background:#fff;
+     box-shadow:0 2px 10px rgba(0,0,0,0.15);
+ }
+ .site-topbar .cart-menu .loading{
+     margin:5px 20px 20px;
+     text-align:center;
+ }
+ .loading{
+     padding:20px 0;
+ }
+ .site-header{
+   position:relative;
+     z-index:20;
+     height:100px;
+ }
+ .site-header .header-nav{
+     float:left;
+     width:850px;
+ }
+ .site-header .header-search{
+     float:left;
+     width:296px;
+     margin-top:25px;
+     border:1px solid #ccc;
+ }
+.site-header .logo{
+    float:left;
+    position:relative;
+    display:block;
+    width:55px;
+    height:55px;
+    overflow:hidden;
+    background-color:#ff6700;
+}
+.site-header .logo i {
+    display:inline-block;
+    width:49px;
+    height:49px;
+    background: url("../img/mi-logo.png") no-repeat;
+    opacity: 1;
+}
+.clearfix:before, .clearfix:after{
+    content:"";
+    display:table;
+}
+.site-header .nav-category{
+    position: relative;
+    float:left;
+    width:138px;
+}
+.site-header .nav-list{
+    position:relative;
+    z-index:10;
+    float:left;
+    width:820px;
+    height:88px;
+    padding:12px 0 0 30px;
+    list-style-type:none;
+    font-size:16px;
+}
+.site-header .nav-item{
+    float:left;
+    padding:18px;
+}
+.site-header .nav-item a{
+    color:#000;
+    text-decoration: none;
+}
+
+
